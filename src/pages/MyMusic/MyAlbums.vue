@@ -31,6 +31,10 @@
     import Loader from "@/components/Loader"
 
     export default {
+        metaInfo: {
+            titleTemplate: "%s | My Albums",
+        },
+
         components: {
             Card,
             Loader

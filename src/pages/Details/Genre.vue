@@ -8,6 +8,10 @@
     import { mapActions } from "vuex"
 
     export default {
+        metaInfo: {
+            titleTemplate: "%s | Genre",
+        },
+
         created() {
             this.SET_CURRENT_PAGE('Genre')
         },

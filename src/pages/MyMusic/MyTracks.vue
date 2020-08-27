@@ -38,6 +38,10 @@
     import Loader from "@/components/Loader"
 
     export default {
+        metaInfo: {
+            titleTemplate: "%s | My Tracks",
+        },
+
         components: {
             Loader,
             Track

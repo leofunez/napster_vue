@@ -8,6 +8,10 @@
     import { mapActions } from "vuex"
 
     export default {
+        metaInfo: {
+            titleTemplate: "%s | Artist",
+        },
+
         created() {
             this.SET_CURRENT_PAGE('Artist')
         },

@@ -55,6 +55,10 @@
     import Loader from "@/components/Loader"
 
     export default {
+        metaInfo: {
+            titleTemplate: "%s | Playlists",
+        },
+
         components: {
             Card,
             Loader

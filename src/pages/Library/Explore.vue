@@ -79,6 +79,10 @@
     import Loader from "@/components/Loader"
 
     export default {
+        metaInfo: {
+            titleTemplate: "%s | Explore",
+        },
+
         components: {
             Card,
             Loader

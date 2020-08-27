@@ -29,7 +29,27 @@
 			localStorage.getItem("napsterTracks") === null && localStorage.setItem("napsterTracks", JSON.stringify([]))
 			localStorage.getItem("napsterAlbums") === null && localStorage.setItem("napsterAlbums", JSON.stringify([]))
 			localStorage.getItem("napsterPlaylists") === null && localStorage.setItem("napsterPlaylists", JSON.stringify([]))
-		}
+		},
+
+		metaInfo: {
+            title: "Napster Concept Redesign",
+            meta: [
+                { charset: "utf-8" },
+                { name: "description", content: "This is a concept redesing using VueJS and Napster API. By Leonardo Funez" },
+                { name: "viewport", content: "width=device-width, initial-scale=1" }
+            ]
+        },
+
+		// watch: {
+		// 	'$route':{
+		// 		handler: (to) => {
+		// 			document.title = to.meta.title || "Napster Concept Redesing",
+		// 			document.description = "This is a concept redesign using VueJS and Napster API. By Leonardo Funez"
+		// 		},
+		// 		immediate: true
+		// 	}
+		// },
+
 	};
 </script>
 

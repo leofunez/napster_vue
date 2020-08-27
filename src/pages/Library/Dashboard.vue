@@ -107,6 +107,10 @@
     import Loader from "@/components/Loader"
 
     export default {
+        metaInfo: {
+            titleTemplate: "%s | Dashboard",
+        },
+        
         components: {
             Card,
             Track,
@@ -211,6 +215,6 @@
 
         computed: {
 			...mapGetters(["GET_TRACK_LIST"]),
-        },
+        }
     }
 </script>
