@@ -1,0 +1,157 @@
+<template>
+    <header class="header">
+        <div class="wrapper">
+            <h1 class="header__title">{{ current_page }}</h1>
+
+            <div class="header__profile">
+                <div class="header__notifications"></div>
+                <div class="header__search"></div>
+
+                <p class="header__profile-name" v-text="user_name"></p>
+                <div class="header__profile-avatar" :style="{'background-image': 'url(' + user_avatar + ')'}"></div>
+                <div class="header__profile-more">
+                    <div class="header__profile-menu">
+                        <div class="header__profile-menu-item">Account settings</div>
+                        <div class="header__profile-menu-item">Keyboard shortcuts</div>
+                        <div class="header__profile-menu-item">Video tutorial</div>
+                        <div class="header__profile-menu-item">Logout</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</template>
+
+<script>
+    import { mapGetters } from "vuex"
+
+    export default {
+        data() {
+            return {
+                current_page: "",
+                user_name: "Leonardo Funez",
+                user_avatar: require("../assets/img/profile/profile.png"),
+            }
+        },
+
+        created() {
+            this.setPageTitle()
+        },
+
+        computed: {
+            ...mapGetters(['GET_CURRENT_PAGE'])
+        },
+
+        methods: {
+            setPageTitle() {
+                this.current_page = this.GET_CURRENT_PAGE
+            }
+        },
+
+        watch: {
+            GET_CURRENT_PAGE() {
+                this.setPageTitle()
+            }
+        }
+    }
+</script>
+
+<style lang="scss">
+    @import "../assets/scss/_colors.scss";
+
+    .header {
+        margin-bottom: 40px;
+        z-index: 2;
+        position: relative;
+
+        .wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &__title {
+            color: $blue;
+            font-size: 20px;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        &__notifications,
+        &__search {
+            height: 40px;
+            width: 40px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        &__notifications {
+            background: url("../assets/img/alert_gray.svg") no-repeat center / 20px;
+        }
+
+        &__search {
+            background: url("../assets/img/search_gray.svg") no-repeat center / 20px;
+            margin-right: 20px;
+        }
+
+        &__profile {
+            display: flex;
+            align-items: center;
+
+            &-name {
+                font-size: 14px;
+                font-weight: 500;
+                margin-right: 12px;
+            }
+
+            &-avatar {
+                height: 40px;
+                width: 40px;
+                border-radius: 50%;
+            }
+
+            &-more {
+                cursor: pointer;
+                background: url("../assets/img/more.svg") no-repeat center / 4px;
+                height: 40px;
+                width: 40px;
+                position: relative;
+
+                &:hover {
+                    .header__profile-menu {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            }
+
+            &-menu {
+                position: absolute;
+                border-radius: 4px;
+                background: $white;
+                text-align: right;
+                width: 200px;
+                right: 10px;
+                top: 50px;
+                border: 1px solid $gray;
+                padding: 10px 0;
+                box-shadow: 0 0 40px $gray;
+                opacity: 0;
+                visibility: hidden;
+                transition: all .2s ease-in-out;
+
+                &-item {
+                    color: #A8B6D1;
+                    padding: 8px 20px;
+                    font-size: 14px;
+                    font-weight: 400;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: $dark;
+                    }
+                }
+            }
+        }
+    }
+</style>
