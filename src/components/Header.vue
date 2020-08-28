@@ -6,7 +6,7 @@
             <div class="header__profile">
                 <!-- <div class="header__notifications"></div>
                 <div class="header__search"></div> -->
-                <div class="header__dark-mode"></div>
+                <div class="header__dark-mode" @click="darkMode"></div>
 
                 <p class="header__profile-name" v-text="user_name"></p>
                 <div class="header__profile-avatar" :style="{'background-image': 'url(' + user_avatar + ')'}"></div>
@@ -32,6 +32,8 @@
                 current_page: "",
                 user_name: "Leonardo Funez",
                 user_avatar: require("../assets/img/profile/profile.png"),
+
+                dark_mode: false
             }
         },
 
@@ -46,6 +48,16 @@
         methods: {
             setPageTitle() {
                 this.current_page = this.GET_CURRENT_PAGE
+            },
+
+            darkMode() {
+                if (this.dark_mode) {
+                    document.querySelector(".napster-container").classList.remove("napster-container--dark")
+                } else {
+                    document.querySelector(".napster-container").classList.add("napster-container--dark")
+                }
+
+                this.dark_mode = !this.dark_mode
             }
         },
 

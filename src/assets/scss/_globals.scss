@@ -27,6 +27,7 @@ main {
         overflow-y: auto;
         max-height: calc(100vh - 130px);
         box-shadow: 0 4px 40px #051023b3;
+        transition: all .4s ease-in-out;
     }
 
     .wrapper {
