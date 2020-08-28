@@ -36,20 +36,17 @@
             meta: [
                 { charset: "utf-8" },
                 { name: "description", content: "This is a concept redesing using VueJS and Napster API. By Leonardo Funez" },
-                { name: "viewport", content: "width=device-width, initial-scale=1" }
+				{ name: "viewport", content: "width=device-width, initial-scale=1" },
+				{ name: "og:title", content: "Napster Concept Redesign" },
+				{ name: "og:description", content: "This is a concept redesing using VueJS and Napster API. By Leonardo Funez" },
+				{ name: "og:image", content: "https://napster-vue.netlify.app/img/social.jpg" },
+				{ name: "twitter:card", content: "summary" },
+				{ name: "twitter:title", content: "Napster Concept Redesign" },
+				{ name: "twitter:description", content: "This is a concept redesing using VueJS and Napster API. By Leonardo Funez" },
+				{ name: "twitter:image", content: "https://napster-vue.netlify.app/img/social.jpg" },
+				{ name: "twitter:creator", content: "@lfunezdelchiaro" },
             ]
         },
-
-		// watch: {
-		// 	'$route':{
-		// 		handler: (to) => {
-		// 			document.title = to.meta.title || "Napster Concept Redesing",
-		// 			document.description = "This is a concept redesign using VueJS and Napster API. By Leonardo Funez"
-		// 		},
-		// 		immediate: true
-		// 	}
-		// },
-
 	};
 </script>
 
