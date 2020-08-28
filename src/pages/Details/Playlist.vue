@@ -16,6 +16,8 @@
                 </div>
             </div>
 
+            <p class="message message--error" v-text="'There are some problems with Napster API'" v-if="error_message"></p>
+
             <div class="divider" v-if="playlist_tracks.length > 0"></div>
 
             <div class="track-list">
@@ -70,8 +72,10 @@
                 playlist_tracks: [],
 
                 is_liked: false,
+                error_message: false,
 
                 filter: ""
+
             }
         },
 
@@ -96,6 +100,7 @@
 
                     this.getPlaylistTracks()
                 } catch (e) {
+                    this.error_message = true
                     console.log("PlaylistDetail API Errors")
                 }
 			},
@@ -120,6 +125,7 @@
                         this.playlist_tracks = [...this.playlist_tracks, track_obj]
                     })
                 } catch (e) {
+                    this.error_message = true
                     console.log("PlaylistDetail API Errors")
                 }
             },

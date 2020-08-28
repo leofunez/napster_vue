@@ -1,6 +1,8 @@
 <template>
     <section class="page page__playlists">
         <div class="wrapper">
+            <p class="message message--error" v-text="'There are some problems with Napster API'" v-if="error_message"></p>
+
             <!-- Featured Playlists -->
                 <div class="featured-playlists" v-if="featured_playlists.length > 0">
                     <h2 class="block-title" v-text="'Featured Playlists'"></h2>
@@ -67,7 +69,8 @@
         data() {
             return {
                 featured_playlists: [],
-				more_playlists: []
+                more_playlists: [],
+                error_message: false
             }
         },
 
@@ -94,6 +97,7 @@
                         }]
                     })
                 } catch (e) {
+                    this.error_message = true
                     console.log("Playlists API Errors")
                 }
             },
@@ -111,6 +115,7 @@
                         }]
                     })
                 } catch (e) {
+                    this.error_message = true
                     console.log("Playlists API Errors")
                 }
             }

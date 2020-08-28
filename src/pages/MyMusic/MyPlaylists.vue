@@ -1,6 +1,8 @@
 <template>
     <section class="page page__my-playlists">
         <div class="wrapper">
+            <p class="message message--error" v-text="'There are some problems with Napster API'" v-if="error_message"></p>
+
             <div class="card-list card-list--4-columns" v-if="playlists.length > 0">
                 <Card
                     v-for="(playlist, index) in playlists"
@@ -44,7 +46,8 @@
             return {
                 keys: Keys,
                 playlists: [],
-                message: false
+                message: false,
+                error_message: false
             }
         },
 
@@ -73,7 +76,7 @@
                                 type: "playlist"
                             }]
                         })
-                        .catch( error => console.log(error))
+                        .catch( () => this.error_message = true)
                     })
                 } else {
                     this.showMessage()

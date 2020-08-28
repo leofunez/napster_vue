@@ -2,7 +2,8 @@
     <section class="page page__artist">
         <div class="wrapper">
             <h2 class="page__title" v-text="artist_name"></h2>
-
+            <p class="message message--error" v-text="'There are some problems with Napster API'" v-if="error_message"></p>
+            
             <div class="card-list card-list--4-columns">
                 <Card
                     v-for="(album, index) in artist_albums"
@@ -38,7 +39,8 @@
             return {
                 artist_id: this.$route.params.id,
 				artist_name: "",
-				artist_albums: []
+                artist_albums: [],
+                error_message: false
             }
         },
 
@@ -58,6 +60,7 @@
                     
                     this.getArtistAlbums()
                 } catch (e) {
+                    this.error_message = true
                     console.log("ArtistDetail API Errors")
                 }
 			},
@@ -76,6 +79,7 @@
                         }]
                     })
                 } catch (e) {
+                    this.error_message = true
                     console.log("ArtistDetail API Errors")
                 }
 			},

@@ -15,6 +15,8 @@
                     </div>
                 </div>
             </div>
+            
+            <p class="message message--error" v-text="'There are some problems with Napster API'" v-if="error_message"></p>
 
             <div class="divider" v-if="album_tracks.length > 0"></div>
 
@@ -70,6 +72,7 @@
                 album_tracks: [],
 
                 is_liked: false,
+                error_message: false,
 
                 filter: ""
             }
@@ -94,6 +97,7 @@
 
                     this.getAlbumTracks()
                 } catch (e) {
+                    this.error_message = true
                     console.log("AlbumDetail API Errors")
                 }
             },
@@ -118,6 +122,7 @@
                         this.album_tracks = [...this.album_tracks, track_obj]
                     })
                 } catch (e) {
+                    this.error_message = true
                     console.log("AlbumDetail API Errors")
                 }
             },

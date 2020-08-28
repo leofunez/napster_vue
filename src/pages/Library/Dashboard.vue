@@ -1,6 +1,8 @@
 <template>
     <section class="page page__dashboard">
         <div class="wrapper">
+            <p class="message message--error" v-text="'There are some problems with Napster API'" v-if="error_message"></p>
+
             <!-- Top Albums -->
                 <div class="top-albums" v-if="top_albums.length > 0">
                     <h2 class="block-title" v-text="'Top Albums'"></h2>
@@ -127,7 +129,9 @@
                 track_playing: '',
 				tracks_liked: [],
 				is_playing: false,
-				is_paused: false,
+                is_paused: false,
+                
+                error_message: false
             }
         },
 
@@ -158,6 +162,7 @@
                         }]
                     })
                 } catch (e) {
+                    this.error_message = true
                     console.log("TopAlbums API Error")
                 }
             },
@@ -175,6 +180,7 @@
                         }]
                     })
                 } catch (e) {
+                    this.error_message = true
                     console.log("NewReleases API Error")
                 }
 			},
@@ -194,13 +200,13 @@
                             album_name: track.albumName,
                             album_photo: `http://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
                         }
-                        // console.log(track)
 
                         this.top_tracks = [...this.top_tracks, track_obj]
                     })
                     
                     this.GET_TRACK_LIST.length === 0 && this.SET_TRACK_LIST(this.top_tracks)
                 } catch (e) {
+                    this.error_message = true
                     console.log("TopTrack API Error")
                 }
 			},
@@ -217,6 +223,7 @@
                         }]
                     })
                 } catch (e) {
+                    this.error_message = true
                     console.log("Genres API Error")
                 }
             },

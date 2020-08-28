@@ -1,6 +1,8 @@
 <template>
     <section class="page page__my-tracks">
         <div class="wrapper">
+            <p class="message message--error" v-text="'There are some problems with Napster API'" v-if="error_message"></p>
+
             <div class="track-list" v-if="tracks.length > 0">
                 <Track
                     v-for="(track, index) in tracks"
@@ -51,7 +53,8 @@
             return {
                 keys: Keys,
                 tracks: [],
-                message: false
+                message: false,
+                error_message: false
             }
         },
 
@@ -88,7 +91,7 @@
                             }
                             this.tracks = [...this.tracks, track_obj]
                         })
-                        .catch( error => console.log(error) )
+                        .catch( () => this.error_message = true )
                     })
                 } else {
                     this.showMessage()

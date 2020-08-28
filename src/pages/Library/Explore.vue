@@ -1,6 +1,8 @@
 <template>
     <section class="page page__explore">
         <div class="wrapper">
+            <p class="message message--error" v-text="'There are some problems with Napster API'" v-if="error_message"></p>
+
             <!-- Top Albums -->
                 <div class="top-albums" v-if="staff_albums.length > 0">
                     <h2 class="block-title" v-text="'Top Albums'"></h2>
@@ -92,7 +94,9 @@
             return {
                 staff_albums: [],
                 top_playlists: [],
-                top_artists: []
+                top_artists: [],
+
+                error_message: false
             }
         },
 
@@ -120,6 +124,7 @@
                         }]
                     })
                 } catch (e) {
+                    this.error_message = true
                     console.log("StaffAlbums API Errors")
                 }
             },
@@ -137,6 +142,7 @@
                         }]
                     })
                 } catch (e) {
+                    this.error_message = true
                     console.log("TopPlaylists API Errors")
                 }
             },
@@ -153,6 +159,7 @@
                         }]
                     })
                 } catch (e) {
+                    this.error_message = true
                     console.log("TopArtists API Errors")
                 }
             }
