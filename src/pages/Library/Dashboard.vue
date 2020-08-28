@@ -146,63 +146,79 @@
             ...mapActions(["SET_CURRENT_PAGE", "SET_TRACK_LIST"]),
 
             async getTopAlbums() {
-                const response = await ApiService.getTopAlbums(6)
-				response.data.albums.forEach( album => {
-					this.top_albums = [...this.top_albums, {
-						id: album.id,
-						title: album.name,
-						subtitle: album.artistName,
-						image: `http://direct.napster.com/imageserver/v2/albums/${album.id}/images/500x500.jpg`,
-						type: 'album'
-					}]
-				})
+                try {
+                    const response = await ApiService.getTopAlbums(6)
+                    response.data.albums.forEach( album => {
+                        this.top_albums = [...this.top_albums, {
+                            id: album.id,
+                            title: album.name,
+                            subtitle: album.artistName,
+                            image: `http://direct.napster.com/imageserver/v2/albums/${album.id}/images/500x500.jpg`,
+                            type: 'album'
+                        }]
+                    })
+                } catch (e) {
+                    console.log("TopAlbums API Error")
+                }
             },
             
             async getNewReleases(){
-				const response = await ApiService.getNewReleases(8)
-				response.data.albums.forEach( album => {
-					this.new_releases = [...this.new_releases, {
-						id: album.id,
-						title: album.name,
-						subtitle: album.artistName,
-						image: `http://direct.napster.com/imageserver/v2/albums/${album.id}/images/500x500.jpg`,
-						type: 'album'
-					}]
-				})
+                try {
+                    const response = await ApiService.getNewReleases(8)
+                    response.data.albums.forEach( album => {
+                        this.new_releases = [...this.new_releases, {
+                            id: album.id,
+                            title: album.name,
+                            subtitle: album.artistName,
+                            image: `http://direct.napster.com/imageserver/v2/albums/${album.id}/images/500x500.jpg`,
+                            type: 'album'
+                        }]
+                    })
+                } catch (e) {
+                    console.log("NewReleases API Error")
+                }
 			},
 
             async getTopTracks(){
-				const response = await ApiService.getTopTracks(10)
-				response.data.tracks.forEach( track => {
-					const track_obj = {
-						track_id: track.id,
-						track_name: track.name,
-						track_duration: track.playbackSeconds,
-						track_url: track.previewURL,
-                        artist_id: track.artistId,
-                        artist_name: track.artistName,
-                        album_id: track.albumId,
-                        album_name: track.albumName,
-                        album_photo: `http://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
-                    }
-                    // console.log(track)
+                try {
+                    const response = await ApiService.getTopTracks(10)
+                    response.data.tracks.forEach( track => {
+                        const track_obj = {
+                            track_id: track.id,
+                            track_name: track.name,
+                            track_duration: track.playbackSeconds,
+                            track_url: track.previewURL,
+                            artist_id: track.artistId,
+                            artist_name: track.artistName,
+                            album_id: track.albumId,
+                            album_name: track.albumName,
+                            album_photo: `http://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
+                        }
+                        // console.log(track)
 
-                    this.top_tracks = [...this.top_tracks, track_obj]
-                })
-                
-                this.GET_TRACK_LIST.length === 0 && this.SET_TRACK_LIST(this.top_tracks)
+                        this.top_tracks = [...this.top_tracks, track_obj]
+                    })
+                    
+                    this.GET_TRACK_LIST.length === 0 && this.SET_TRACK_LIST(this.top_tracks)
+                } catch (e) {
+                    console.log("TopTrack API Error")
+                }
 			},
             
             async getGenres(){
-				const response = await ApiService.getGenres(5)
-				response.data.genres.forEach( genre => {
-					this.genres = [...this.genres, {
-						id: genre.id,
-						title: genre.name,
-						image: `http://direct.napster.com/imageserver/images/${genre.id}/240x160.jpg`,
-						type: 'genre'
-					}]
-				})
+                try {
+                    const response = await ApiService.getGenres(5)
+                    response.data.genres.forEach( genre => {
+                        this.genres = [...this.genres, {
+                            id: genre.id,
+                            title: genre.name,
+                            image: `http://direct.napster.com/imageserver/images/${genre.id}/240x160.jpg`,
+                            type: 'genre'
+                        }]
+                    })
+                } catch (e) {
+                    console.log("Genres API Error")
+                }
             },
             
             getStorageTracks(){

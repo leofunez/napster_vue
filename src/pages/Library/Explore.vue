@@ -108,41 +108,53 @@
             ...mapActions(["SET_CURRENT_PAGE"]),
 
             async getStaffAlbums() {
-                const staff_albums = await ApiService.getStaffAlbums(12)
-				staff_albums.data.albums.forEach( album => {
-					this.staff_albums = [...this.staff_albums, {
-						id: album.id,
-						title: album.name,
-						subtitle: album.artistName,
-						image: `http://direct.napster.com/imageserver/v2/albums/${album.id}/images/500x500.jpg`,
-						type: 'album'
-					}]
-				})
+                try {
+                    const staff_albums = await ApiService.getStaffAlbums(12)
+                    staff_albums.data.albums.forEach( album => {
+                        this.staff_albums = [...this.staff_albums, {
+                            id: album.id,
+                            title: album.name,
+                            subtitle: album.artistName,
+                            image: `http://direct.napster.com/imageserver/v2/albums/${album.id}/images/500x500.jpg`,
+                            type: 'album'
+                        }]
+                    })
+                } catch (e) {
+                    console.log("StaffAlbums API Errors")
+                }
             },
 
             async getTopPlaylists() {
-                const top_playlists = await ApiService.getTopPlaylists(12)
-				top_playlists.data.playlists.forEach( playlist => {
-					this.top_playlists = [...this.top_playlists, {
-						id: playlist.id,
-						title: playlist.name,
-						subtitle: `${playlist.trackCount} tracks`,
-						image: playlist.images[0].url,
-						type: 'playlist'
-					}]
-				})
+                try {
+                    const top_playlists = await ApiService.getTopPlaylists(12)
+                    top_playlists.data.playlists.forEach( playlist => {
+                        this.top_playlists = [...this.top_playlists, {
+                            id: playlist.id,
+                            title: playlist.name,
+                            subtitle: `${playlist.trackCount} tracks`,
+                            image: playlist.images[0].url,
+                            type: 'playlist'
+                        }]
+                    })
+                } catch (e) {
+                    console.log("TopPlaylists API Errors")
+                }
             },
 
             async getTopArtists() {
-                const top_artists = await ApiService.getTopArtists(12)
-				top_artists.data.artists.forEach( artist => {
-					this.top_artists = [...this.top_artists, {
-						id: artist.id,
-						title: artist.name,
-						image: `http://direct.napster.com/imageserver/v2/artists/${artist.id}/images/633x422.jpg`,
-						type: 'artist'
-					}]
-				})
+                try {
+                    const top_artists = await ApiService.getTopArtists(12)
+                    top_artists.data.artists.forEach( artist => {
+                        this.top_artists = [...this.top_artists, {
+                            id: artist.id,
+                            title: artist.name,
+                            image: `http://direct.napster.com/imageserver/v2/artists/${artist.id}/images/633x422.jpg`,
+                            type: 'artist'
+                        }]
+                    })
+                } catch (e) {
+                    console.log("TopArtists API Errors")
+                }
             }
         }
     }

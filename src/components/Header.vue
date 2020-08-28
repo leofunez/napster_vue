@@ -4,8 +4,9 @@
             <h1 class="header__title">{{ current_page }}</h1>
 
             <div class="header__profile">
-                <div class="header__notifications"></div>
-                <div class="header__search"></div>
+                <!-- <div class="header__notifications"></div>
+                <div class="header__search"></div> -->
+                <div class="header__dark-mode"></div>
 
                 <p class="header__profile-name" v-text="user_name"></p>
                 <div class="header__profile-avatar" :style="{'background-image': 'url(' + user_avatar + ')'}"></div>
@@ -61,7 +62,7 @@
 
     .header {
         margin-bottom: 40px;
-        z-index: 2;
+        z-index: 3;
         position: relative;
 
         .wrapper {
@@ -78,11 +79,17 @@
         }
 
         &__notifications,
-        &__search {
+        &__search,
+        &__dark-mode {
             height: 40px;
             width: 40px;
             margin-right: 10px;
             cursor: pointer;
+            border-radius: 4px;
+
+            &:hover {
+                background-color: $gray;
+            }
         }
 
         &__notifications {
@@ -91,7 +98,15 @@
 
         &__search {
             background: url("../assets/img/search_gray.svg") no-repeat center / 20px;
+        }
+
+        &__dark-mode {
+            background: url("../assets/img/dark_mode_dark.svg") no-repeat center / 18px;
             margin-right: 20px;
+
+            &--active {
+                background-image: url("../assets/img/dark_mode_on.svg");
+            }
         }
 
         &__profile {

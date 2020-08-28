@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-            <div class="divider"></div>
+            <div class="divider" v-if="album_tracks.length > 0"></div>
 
             <div class="track-list">
                 <Track
@@ -36,6 +36,8 @@
                     :artist_name="track.artist_name"
                 />
             </div>
+
+            <Loader text="Loading tracks..." :visible="album_tracks.length == 0" />
         </div>
     </section>
 </template>
@@ -46,6 +48,7 @@
 
     import Track from "@/components/Track"
     import LikeButton from "@/components/LikeButton"
+    import Loader from "@/components/Loader"
 
     export default {
         metaInfo: {
@@ -54,7 +57,8 @@
 
         components: {
             Track,
-            LikeButton
+            LikeButton,
+            Loader
         },
 
         data() {
@@ -81,33 +85,41 @@
             ...mapActions(['SET_CURRENT_PAGE']),
 
             async getAlbumDetail() {
-				const album_detail = await ApiService.getAlbumDetail(this.album_id)
-				
-				this.album_title = album_detail.data.albums[0].name
-				this.album_artist = album_detail.data.albums[0].artistName
-				this.album_image = `http://direct.napster.com/imageserver/v2/albums/${this.album_id}/images/500x500.jpg`
+                try {
+                    const album_detail = await ApiService.getAlbumDetail(this.album_id)
+                    
+                    this.album_title = album_detail.data.albums[0].name
+                    this.album_artist = album_detail.data.albums[0].artistName
+                    this.album_image = `http://direct.napster.com/imageserver/v2/albums/${this.album_id}/images/500x500.jpg`
 
-				this.getAlbumTracks()
+                    this.getAlbumTracks()
+                } catch (e) {
+                    console.log("AlbumDetail API Errors")
+                }
             },
             
             async getAlbumTracks() {
-				const album_tracks = await ApiService.getAlbumTracks(this.album_id)
+                try {
+                    const album_tracks = await ApiService.getAlbumTracks(this.album_id)
 
-				album_tracks.data.tracks.map( track => {
-					const track_obj = {
-						track_id: track.id,
-						track_name: track.name,
-						track_duration: track.playbackSeconds,
-						track_url: track.previewURL,
-                        artist_id: track.artistId,
-                        artist_name: track.artistName,
-                        album_id: track.albumId,
-                        album_name: track.albumName,
-                        album_photo: `http://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
-					}
+                    album_tracks.data.tracks.map( track => {
+                        const track_obj = {
+                            track_id: track.id,
+                            track_name: track.name,
+                            track_duration: track.playbackSeconds,
+                            track_url: track.previewURL,
+                            artist_id: track.artistId,
+                            artist_name: track.artistName,
+                            album_id: track.albumId,
+                            album_name: track.albumName,
+                            album_photo: `http://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
+                        }
 
-					this.album_tracks = [...this.album_tracks, track_obj]
-				})
+                        this.album_tracks = [...this.album_tracks, track_obj]
+                    })
+                } catch (e) {
+                    console.log("AlbumDetail API Errors")
+                }
             },
             
             isLiked() {

@@ -1,8 +1,8 @@
 import axios from 'axios'
-const api_key = 'YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4'
+const api_key = 'ZTk2YjY4MjMtMDAzYy00MTg4LWE2MjYtZDIzNjJmMmM0YTdm'
 
 const apiNapster = axios.create({
-	baseURL: `https://api.napster.com/v2.2`,
+	baseURL: `https://api.napster.com/v2.1`,
 	withCredentials: false,
 	headers: {
 		Accept: 'application/json',

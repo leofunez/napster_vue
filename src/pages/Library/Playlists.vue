@@ -82,29 +82,37 @@
             ...mapActions(["SET_CURRENT_PAGE"]),
 
             async getFeaturedPlaylists() {
-                const featured_playlists = await ApiService.getFeaturedPlaylists(12)
-				featured_playlists.data.playlists.forEach( playlist => {
-					this.featured_playlists = [...this.featured_playlists, {
-						id: playlist.id,
-						title: playlist.name,
-						subtitle: `${playlist.favoriteCount} followers`,
-						image: `http://direct.napster.com/imageserver/v2/playlists/${playlist.id}/artists/images/1200x400.jpg`,
-						type: "playlist"
-					}]
-				})
+                try {
+                    const featured_playlists = await ApiService.getFeaturedPlaylists(12)
+                    featured_playlists.data.playlists.forEach( playlist => {
+                        this.featured_playlists = [...this.featured_playlists, {
+                            id: playlist.id,
+                            title: playlist.name,
+                            subtitle: `${playlist.favoriteCount} followers`,
+                            image: `http://direct.napster.com/imageserver/v2/playlists/${playlist.id}/artists/images/1200x400.jpg`,
+                            type: "playlist"
+                        }]
+                    })
+                } catch (e) {
+                    console.log("Playlists API Errors")
+                }
             },
 
             async getMorePlaylists() {
-                const more_playlists = await ApiService.getMorePlaylists(8, 10)
-				more_playlists.data.playlists.forEach( playlist => {
-					this.more_playlists = [...this.more_playlists, {
-						id: playlist.id,
-						title: playlist.name,
-						subtitle: `${playlist.favoriteCount} followers`,
-						image: `http://direct.napster.com/imageserver/v2/playlists/${playlist.id}/artists/images/1200x400.jpg`,
-						type: "playlist"
-					}]
-				})
+                try {
+                    const more_playlists = await ApiService.getMorePlaylists(8, 10)
+                    more_playlists.data.playlists.forEach( playlist => {
+                        this.more_playlists = [...this.more_playlists, {
+                            id: playlist.id,
+                            title: playlist.name,
+                            subtitle: `${playlist.favoriteCount} followers`,
+                            image: `http://direct.napster.com/imageserver/v2/playlists/${playlist.id}/artists/images/1200x400.jpg`,
+                            type: "playlist"
+                        }]
+                    })
+                } catch (e) {
+                    console.log("Playlists API Errors")
+                }
             }
         }
     }

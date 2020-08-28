@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-            <div class="divider"></div>
+            <div class="divider" v-if="playlist_tracks.length > 0"></div>
 
             <div class="track-list">
                 <Track
@@ -36,6 +36,8 @@
                     :artist_name="track.artist_name"
                 />
             </div>
+
+            <Loader text="Loading tracks..." :visible="playlist_tracks.length == 0" />
         </div>
     </section>
 </template>
@@ -46,6 +48,7 @@
 
     import Track from "@/components/Track"
     import LikeButton from "@/components/LikeButton"
+    import Loader from "@/components/Loader"
 
     export default {
         metaInfo: {
@@ -54,7 +57,8 @@
 
         components: {
             Track,
-            LikeButton
+            LikeButton,
+            Loader
         },
 
         data() {
@@ -80,36 +84,44 @@
         methods: {
             ...mapActions(['SET_CURRENT_PAGE']),
 
-            async getPlaylistDetail(){
-				const playlist_detail = await ApiService.getPlaylistDetail(this.playlist_id)
+            async getPlaylistDetail() {
+                try {
+                    const playlist_detail = await ApiService.getPlaylistDetail(this.playlist_id)
 
-				this.playlist_title = playlist_detail.data.playlists[0].name
-				this.playlist_artist = playlist_detail.data.playlists[0].artistName
-				this.playlist_amount = playlist_detail.data.playlists[0].trackCount
-				this.playlist_description = playlist_detail.data.playlists[0].description
-				this.playlist_image = `http://direct.napster.com/imageserver/v2/playlists/${this.playlist_id}/artists/images/1800x600.jpg`
+                    this.playlist_title = playlist_detail.data.playlists[0].name
+                    this.playlist_artist = playlist_detail.data.playlists[0].artistName
+                    this.playlist_amount = playlist_detail.data.playlists[0].trackCount
+                    this.playlist_description = playlist_detail.data.playlists[0].description
+                    this.playlist_image = `http://direct.napster.com/imageserver/v2/playlists/${this.playlist_id}/artists/images/1800x600.jpg`
 
-				this.getPlaylistTracks()
+                    this.getPlaylistTracks()
+                } catch (e) {
+                    console.log("PlaylistDetail API Errors")
+                }
 			},
 
-			async getPlaylistTracks(){
-				const playlist_tracks = await ApiService.getPlaylistTrack(this.playlist_id)
+			async getPlaylistTracks() {
+                try {
+                    const playlist_tracks = await ApiService.getPlaylistTrack(this.playlist_id)
 
-				playlist_tracks.data.tracks.forEach( track => {                    
-                    const track_obj = {
-						track_id: track.id,
-						track_name: track.name,
-						track_duration: track.playbackSeconds,
-						track_url: track.previewURL,
-                        artist_id: track.artistId,
-                        artist_name: track.artistName,
-                        album_id: track.albumId,
-                        album_name: track.albumName,
-                        album_photo: `http://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
-					}
+                    playlist_tracks.data.tracks.forEach( track => {                    
+                        const track_obj = {
+                            track_id: track.id,
+                            track_name: track.name,
+                            track_duration: track.playbackSeconds,
+                            track_url: track.previewURL,
+                            artist_id: track.artistId,
+                            artist_name: track.artistName,
+                            album_id: track.albumId,
+                            album_name: track.albumName,
+                            album_photo: `http://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
+                        }
 
-					this.playlist_tracks = [...this.playlist_tracks, track_obj]
-				})
+                        this.playlist_tracks = [...this.playlist_tracks, track_obj]
+                    })
+                } catch (e) {
+                    console.log("PlaylistDetail API Errors")
+                }
             },
             
             isLiked() {
