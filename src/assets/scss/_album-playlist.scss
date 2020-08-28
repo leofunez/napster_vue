@@ -1,0 +1,65 @@
+@import "./_colors.scss";
+
+.playlist-album {
+    margin-bottom: 60px;
+
+    &__top {
+        display: flex;
+    }
+
+    &__photo {
+        min-width: 100px;
+        height: 100px;
+        margin-right: 20px;
+        background-size: cover;
+        background-color: $dark;
+        border-radius: 4px;
+    }
+
+    &__info {
+        width: 100%;
+    }
+
+    &__title {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    &__subtitle {
+        font-size: 14px;
+        opacity: 0.5;
+        margin-bottom: 8px;
+    }
+
+    &__bottom {
+        display: flex;
+
+        .like-button {
+            background-color: $gray;
+            border-radius: 4px;
+            width: 70px;
+            margin-left: auto;
+        }
+    }
+
+    &__play-all {
+        padding: 10px 20px 10px 50px;
+        margin-right: 20px;
+        cursor: pointer;
+        display: flex;
+        font-size: 14px;
+        height: 50px;
+        align-items: center;
+        border-radius: 4px;
+        background: url("../../assets/img/player/play_color.svg") no-repeat 20px center / 20px $gray;
+    }
+
+    &__filter {
+        padding: 16px 20px;
+        width: 250px;
+        border: 0;
+        background-color: $gray;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+}

@@ -1,10 +1,10 @@
 <template>
-    <div class="like-button" :class="{'like-button--active': active}"></div>
+    <div class="like-button" :class="{'like-button--active': active, 'like-button--dark': is_dark}"></div>
 </template>
 
 <script>
     export default {
-        props: ["active"]   
+        props: ["active", "is_dark"]   
     }
 </script>
 

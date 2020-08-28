@@ -96,7 +96,7 @@
                             this.is_liked = true
                         }
 
-                        localStorage.setItem("napsterAlbums", JSON.stringify(JSONStorageAlbums))                    
+                        localStorage.setItem("napsterAlbums", JSON.stringify(JSONStorageAlbums))
                     }
                 // .Albums
                 
@@ -114,7 +114,7 @@
                             this.is_liked = true
                         }
 
-                        localStorage.setItem("napsterPlaylists", JSON.stringify(JSONStoragePlaylists))  
+                        localStorage.setItem("napsterPlaylists", JSON.stringify(JSONStoragePlaylists))
                     }
                 // .Playlists
 
