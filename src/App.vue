@@ -39,11 +39,11 @@
 				{ name: "viewport", content: "width=device-width, initial-scale=1" },
 				{ name: "og:title", content: "Napster Concept Redesign" },
 				{ name: "og:description", content: "This is a concept redesing using VueJS and Napster API. By Leonardo Funez" },
-				{ name: "og:image", content: "https://napster-vue.netlify.app/img/social.jpg" },
+				{ name: "og:image", content: "https://napster-vue.netlify.app/social.jpg" },
 				{ name: "twitter:card", content: "summary" },
 				{ name: "twitter:title", content: "Napster Concept Redesign" },
 				{ name: "twitter:description", content: "This is a concept redesing using VueJS and Napster API. By Leonardo Funez" },
-				{ name: "twitter:image", content: "https://napster-vue.netlify.app/img/social.jpg" },
+				{ name: "twitter:image", content: "https://napster-vue.netlify.app/social.jpg" },
 				{ name: "twitter:creator", content: "@lfunezdelchiaro" },
             ]
         },
