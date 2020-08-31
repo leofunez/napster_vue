@@ -5,16 +5,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        currentPage: "",
+        current_page: "",
 
-        currentTrack: {
+        current_track: {
             track_id: "",
 			track_name: "",
 			track_url: "",
 			album_id: "",
 			album_name: "",
 			album_photo: ""
-        },
+		},
+		
+		current_tracklist: "",
 
 		playing: false,
 		is_paused: false,
@@ -26,10 +28,13 @@ export default new Vuex.Store({
 
     getters: {
         // Current Page
-            GET_CURRENT_PAGE: (state) => state.currentPage,
+            GET_CURRENT_PAGE: (state) => state.current_page,
 
         // Current Track
-            GET_CURRENT_TRACK: (state) => state.currentTrack,
+			GET_CURRENT_TRACK: (state) => state.current_track,
+		
+		// Current Tracklist
+			GET_CURRENT_TRACKLIST: (state) => state.current_tracklist,
                 
         // Track List
             GET_TRACK_LIST: (state) => state.track_list,
@@ -49,15 +54,15 @@ export default new Vuex.Store({
 
     mutations: {
         // Current Page
-            set_current_page: (state, data) => state.currentPage = data,
+            set_current_page: (state, data) => state.current_page = data,
             
         // Current Track
 			set_current_track: (state, data) => {
-				state.currentTrack = [],
-				state.currentTrack = [...state.currentTrack, data]
+				state.current_track = [],
+				state.current_track = [...state.current_track, data]
 			},
 			empty_current_track: (state) => {
-				state.currentTrack = [{
+				state.current_track = [{
 					track_id: "",
 					track_name: "",
 					track_url: "",
@@ -66,6 +71,9 @@ export default new Vuex.Store({
 					album_photo: ""
 				}]
 			},
+		
+		// Current Tracklist
+			set_current_tracklist: (state, data) => state.current_tracklist = data,
 		
 		// Track List
 			set_track_list: (state, data) => {
@@ -96,6 +104,9 @@ export default new Vuex.Store({
         // Current Track
 			SET_CURRENT_TRACK: (context, data) => context.commit("set_current_track", data),
 			SET_EMPTY_CURRENT_TRACK: (context) => context.commit("empty_current_track"),
+		
+		// Current Tracklist
+			SET_CURRENT_TRACKLIST: (context, data) => context.commit("set_current_tracklist", data),
 		
 		// Track List
 			SET_TRACK_LIST: (context, data) => context.commit("set_track_list", data),

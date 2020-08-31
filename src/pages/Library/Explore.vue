@@ -53,7 +53,7 @@
                 <div class="new-releases last-section-block" v-if="top_artists.length > 0">
                     <h2 class="block-title" v-text="'Top Artists'"></h2>
 
-                    <div class="card-list card-list--4-columns">
+                    <div class="card-list card-list--5-columns">
                         <Card
                             v-for="(artist, index) in top_artists"
 							:key="index"
@@ -149,7 +149,7 @@
 
             async getTopArtists() {
                 try {
-                    const top_artists = await ApiService.getTopArtists(12)
+                    const top_artists = await ApiService.getTopArtists(15)
                     top_artists.data.artists.forEach( artist => {
                         this.top_artists = [...this.top_artists, {
                             id: artist.id,

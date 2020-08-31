@@ -88,10 +88,12 @@
             this.SET_CURRENT_PAGE('Playlist')
             this.isLiked()
             this.getPlaylistDetail()
+            
+            this.SET_PLAYING && this.SET_CURRENT_TRACKLIST === this.playlist_id && (this.is_playing = true)
         },
 
         methods: {
-            ...mapActions(["SET_CURRENT_PAGE", "SET_TRACK_LIST", "SET_PLAYING", "SET_CURRENT_TRACK"]),
+            ...mapActions(["SET_CURRENT_PAGE", "SET_TRACK_LIST", "SET_PLAYING", "SET_CURRENT_TRACK", "SET_CURRENT_TRACKLIST"]),
 
             async getPlaylistDetail() {
                 try {
@@ -164,6 +166,7 @@
                     this.SET_TRACK_LIST([])
                     this.SET_TRACK_LIST(this.playlist_tracks)
                     this.SET_CURRENT_TRACK(this.playlist_tracks[0])
+                    this.SET_CURRENT_TRACKLIST(this.playlist_id)
                     this.SET_PLAYING(true)
                     this.is_playing = true
                 } else {
@@ -173,7 +176,7 @@
         },
 
         computed: {
-            ...mapGetters(["GET_TRACK_LIST"])
+            ...mapGetters(["GET_TRACK_LIST", "GET_CURRENT_TRACKLIST"])
         }
     }
 </script>

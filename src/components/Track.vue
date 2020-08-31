@@ -43,6 +43,7 @@
         created() {
             this.time = this.getTrackTime(this.track_duration),
             this.getStorageTracks()
+            this.isPlaying()
         },
 
         methods: {
@@ -120,7 +121,15 @@
                     // Checking if this track is already liked
                     this.is_liked = (JSONStorageTracks.includes(this.album_id + '@' + this.track_id)) ? true : false
 				}
-			}
+            },
+            
+            isPlaying() {
+                let current_track = this.GET_CURRENT_TRACK
+                
+                if (current_track[0] !== undefined) {
+                    current_track[0].track_id === this.track_id && (this.is_playing = true)
+                }
+            }
         },
 
         computed: {

@@ -51,7 +51,7 @@
 
 <script>
     import ApiService from "@/services/api"
-    import { mapActions } from "vuex"
+    import { mapActions, mapGetters } from "vuex"
 
     import Track from "@/components/Track"
     import LikeButton from "@/components/LikeButton"
@@ -88,10 +88,12 @@
             this.SET_CURRENT_PAGE("Album")
             this.isLiked()
             this.getAlbumDetail()
+            
+            this.GET_PLAYING && this.GET_CURRENT_TRACKLIST === this.album_id && (this.is_playing = true)
         },
 
         methods: {
-            ...mapActions(["SET_CURRENT_PAGE", "SET_TRACK_LIST", "SET_PLAYING", "SET_CURRENT_TRACK"]),
+            ...mapActions(["SET_CURRENT_PAGE", "SET_TRACK_LIST", "SET_PLAYING", "SET_CURRENT_TRACK", "SET_CURRENT_TRACKLIST"]),
 
             async getAlbumDetail() {
                 try {
@@ -157,12 +159,22 @@
             
             playAll() {
                 this.SET_PLAYING(false)
-                this.SET_TRACK_LIST([])
-                this.SET_TRACK_LIST(this.album_tracks)
-                this.SET_CURRENT_TRACK(this.album_tracks[0])
-                this.SET_PLAYING(true)
-                this.is_playing = true
+                
+                if (!this.is_playing) {
+                    this.SET_TRACK_LIST([])
+                    this.SET_TRACK_LIST(this.album_tracks)
+                    this.SET_CURRENT_TRACK(this.album_tracks[0])
+                    this.SET_CURRENT_TRACKLIST(this.album_id)
+                    this.SET_PLAYING(true)
+                    this.is_playing = true
+                } else {
+                    this.is_playing = false
+                }
             }
+        },
+
+        computed: {
+            ...mapGetters(["GET_CURRENT_TRACKLIST"])
         }
     }
 </script>

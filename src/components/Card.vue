@@ -289,8 +289,7 @@
 
         &--circled {
             border-radius: 50%;
-            height: 170px;
-            width: 170px;
+            height: 175px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -299,6 +298,7 @@
             .card {
                 &__info {
                     position: relative;
+                    padding: 0;
                 }
 
                 &__title {
@@ -333,7 +333,7 @@
 
         // Media
             @media screen and (max-width: 480px) {
-                
+
             }
         // .Media
     }
