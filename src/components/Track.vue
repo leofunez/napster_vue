@@ -145,6 +145,15 @@
                 if (current_track[0].track_id === this.track_id) {
                     this.is_playing = this.GET_PLAYING
                 }
+            },
+
+            GET_PLAYING() {
+                // This watcher is to sync the playing state when it is changed from another component
+                let current_track = this.GET_CURRENT_TRACK
+                
+                if (current_track[0].track_id === this.track_id) {
+                    this.is_playing = this.GET_PLAYING
+                }
             }
         }
     }

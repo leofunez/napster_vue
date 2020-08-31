@@ -14,7 +14,7 @@
                             v-text="is_playing ? 'Pause all' : 'Play all'"
                             @click="playAll">
                         </button>
-                        <input class="playlist-album__filter" type="search" placeholder="Filter...">
+                        <input class="playlist-album__filter" type="search" placeholder="Filter..." @keyup="filter" v-model="filter_string">
 
                         <LikeButton :is_dark="true" :active="is_liked" @click.native.prevent="likeAlbum()"/>
                     </div>
@@ -80,7 +80,8 @@
                 is_playing: false,
                 error_message: false,
 
-                filter: ""
+                filter_string: "",
+                filter_tracks: []
             }
         },
 
@@ -129,6 +130,7 @@
                         }
 
                         this.album_tracks = [...this.album_tracks, track_obj]
+                        this.filter_tracks = [...this.filter_tracks, track_obj]
                     })
                 } catch (e) {
                     this.error_message = true
@@ -170,11 +172,28 @@
                 } else {
                     this.is_playing = false
                 }
+            },
+
+            filter() {
+                let trackListFiltered = this.filter_tracks.filter( track => {
+                    const trackName = track.track_name.toLowerCase()
+                    const trackArtistName = track.artist_name.toLowerCase()
+                    return trackName.includes(this.filter_string.toLowerCase()) || trackArtistName.includes(this.filter_string.toLowerCase())
+                })
+
+                this.album_tracks = []
+                this.album_tracks = trackListFiltered
             }
         },
 
         computed: {
-            ...mapGetters(["GET_CURRENT_TRACKLIST"])
+            ...mapGetters(["GET_CURRENT_TRACKLIST", "GET_PLAYING"])
+        },
+
+        watch: {
+            GET_PLAYING() {
+                this.is_playing = this.GET_PLAYING
+            }
         }
     }
 </script>
