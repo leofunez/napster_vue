@@ -41,6 +41,7 @@ main {
         height: 1px;
         background: $gray;
         margin: 50px auto;
+        transition: all .4s ease-in-out;
     }
 
     .last-section-block {

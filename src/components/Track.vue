@@ -153,6 +153,7 @@
         background-color: $gray;
         margin-bottom: 10px;
         border-radius: 4px;
+        transition: all .4s ease-in-out;
 
         &__play {
             background: url("../assets/img/player/play_color.svg") no-repeat center / 15px;

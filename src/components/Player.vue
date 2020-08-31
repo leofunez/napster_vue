@@ -176,11 +176,12 @@
 
             nextTrack() {
                 let current_track = this.GET_CURRENT_TRACK[0]
+                console.log(current_track)
                 
                 if (current_track !== undefined) {
-                    let index_next_track = ''
-                    let next_track = ''
-                    let new_track = ''
+                    let index_next_track = ""
+                    let next_track = ""
+                    let new_track = ""
                     
                     current_track.track_index === this.GET_TRACK_LIST[0].length -1 ? index_next_track = 0 : index_next_track = current_track.track_index + 1
 

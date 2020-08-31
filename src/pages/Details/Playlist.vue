@@ -8,7 +8,11 @@
                     <p class="playlist-album__subtitle" v-text="playlist_amount + ' tracks'"></p>
 
                     <div class="playlist-album__bottom">
-                        <button class="playlist-album__play-all" v-text="'Play all'"></button>
+                        <button
+                            class="playlist-album__play-all"
+                            :class="{'playlist-album__play-all--pause': is_playing}"
+                            v-text="is_playing ? 'Pause all' : 'Play all'" @click="playAll">
+                        </button>
                         <input class="playlist-album__filter" type="search" placeholder="Filter...">
 
                         <LikeButton :is_dark="true" :active="is_liked" @click.native.prevent="likePlaylist()"/>
@@ -46,7 +50,7 @@
 
 <script>
     import ApiService from "@/services/api"
-    import { mapActions } from "vuex"
+    import { mapActions, mapGetters } from "vuex"
 
     import Track from "@/components/Track"
     import LikeButton from "@/components/LikeButton"
@@ -72,6 +76,7 @@
                 playlist_tracks: [],
 
                 is_liked: false,
+                is_playing: false,
                 error_message: false,
 
                 filter: ""
@@ -86,7 +91,7 @@
         },
 
         methods: {
-            ...mapActions(['SET_CURRENT_PAGE']),
+            ...mapActions(["SET_CURRENT_PAGE", "SET_TRACK_LIST", "SET_PLAYING", "SET_CURRENT_TRACK"]),
 
             async getPlaylistDetail() {
                 try {
@@ -109,8 +114,9 @@
                 try {
                     const playlist_tracks = await ApiService.getPlaylistTrack(this.playlist_id)
 
-                    playlist_tracks.data.tracks.forEach( track => {                    
+                    playlist_tracks.data.tracks.forEach( (track, index) => {                    
                         const track_obj = {
+                            track_index: index,
                             track_id: track.id,
                             track_name: track.name,
                             track_duration: track.playbackSeconds,
@@ -149,7 +155,25 @@
                 }
 
                 localStorage.setItem("napsterPlaylists", JSON.stringify(JSONStoragePlaylists))
+            },
+
+            playAll() {
+                this.SET_PLAYING(false)
+                
+                if (!this.is_playing) {
+                    this.SET_TRACK_LIST([])
+                    this.SET_TRACK_LIST(this.playlist_tracks)
+                    this.SET_CURRENT_TRACK(this.playlist_tracks[0])
+                    this.SET_PLAYING(true)
+                    this.is_playing = true
+                } else {
+                    this.is_playing = false
+                }
             }
+        },
+
+        computed: {
+            ...mapGetters(["GET_TRACK_LIST"])
         }
     }
 </script>

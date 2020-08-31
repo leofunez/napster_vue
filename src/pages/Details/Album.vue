@@ -8,7 +8,12 @@
                     <p class="playlist-album__subtitle" v-text="album_artist"></p>
 
                     <div class="playlist-album__bottom">
-                        <button class="playlist-album__play-all" v-text="'Play all'"></button>
+                        <button
+                            class="playlist-album__play-all"
+                            :class="{'playlist-album__play-all--pause': is_playing}"
+                            v-text="is_playing ? 'Pause all' : 'Play all'"
+                            @click="playAll">
+                        </button>
                         <input class="playlist-album__filter" type="search" placeholder="Filter...">
 
                         <LikeButton :is_dark="true" :active="is_liked" @click.native.prevent="likeAlbum()"/>
@@ -72,6 +77,7 @@
                 album_tracks: [],
 
                 is_liked: false,
+                is_playing: false,
                 error_message: false,
 
                 filter: ""
@@ -79,13 +85,13 @@
         },
 
         created() {
-            this.SET_CURRENT_PAGE('Album')
+            this.SET_CURRENT_PAGE("Album")
             this.isLiked()
             this.getAlbumDetail()
         },
 
         methods: {
-            ...mapActions(['SET_CURRENT_PAGE']),
+            ...mapActions(["SET_CURRENT_PAGE", "SET_TRACK_LIST", "SET_PLAYING", "SET_CURRENT_TRACK"]),
 
             async getAlbumDetail() {
                 try {
@@ -106,8 +112,9 @@
                 try {
                     const album_tracks = await ApiService.getAlbumTracks(this.album_id)
 
-                    album_tracks.data.tracks.map( track => {
+                    album_tracks.data.tracks.map( (track, index) => {
                         const track_obj = {
+                            track_index: index,
                             track_id: track.id,
                             track_name: track.name,
                             track_duration: track.playbackSeconds,
@@ -146,6 +153,15 @@
                 }
 
                 localStorage.setItem("napsterAlbums", JSON.stringify(JSONStorageAlbums))    
+            },
+            
+            playAll() {
+                this.SET_PLAYING(false)
+                this.SET_TRACK_LIST([])
+                this.SET_TRACK_LIST(this.album_tracks)
+                this.SET_CURRENT_TRACK(this.album_tracks[0])
+                this.SET_PLAYING(true)
+                this.is_playing = true
             }
         }
     }
