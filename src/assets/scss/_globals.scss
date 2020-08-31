@@ -32,8 +32,9 @@ main {
 
     .wrapper {
         width: 100%;
-        max-width: 900px;
+        max-width: 980px;
         margin: 0 auto;
+        padding: 0 10px;
     }
     
     .divider {
@@ -66,15 +67,15 @@ main {
     .card-list {
         display: grid;
         grid-gap: 20px;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
 
         &--4-columns {
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-columns: repeat(4, 1fr);
             grid-gap: 40px 20px;
         }
 
         &--5-columns {
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: repeat(5, 1fr);
             grid-gap: 20px;
         }
     }
@@ -87,4 +88,55 @@ main {
             margin-bottom: 30px;
         }
     }
+
+    // Media
+        @media screen and (max-width: 1180px) {
+            .napster-container {
+                width: calc(100% - 100px);
+                border-radius: 0;
+            }
+
+            .card-list {
+                grid-template-columns: repeat(2, 1fr);
+
+                &--4-columns {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+
+                &--5-columns {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+            }
+        }
+
+        @media screen and (max-width: 680px) {
+            .napster-container {
+                width: calc(100% - 60px);
+            }
+
+            .card-list {
+                grid-template-columns: 1fr;
+
+                &--4-columns {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                &--5-columns {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+        }
+
+        @media screen and (max-width: 680px) {
+            .card-list {
+                &--4-columns {
+                    grid-template-columns: 1fr;
+                }
+
+                &--5-columns {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+        }
+    // .Media
 }

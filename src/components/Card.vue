@@ -143,7 +143,7 @@
     
     .card {
         height: 210px;
-        width: 210px;
+        width: 100%;
         border-radius: 10px;
         color: $white;
         padding: 20px;
@@ -214,8 +214,7 @@
         }
 
         &--big {
-            width: 286px;
-            height: 260px;
+            height: 270px;
 
             .like-button {
                 background-size: 30px;
@@ -225,7 +224,6 @@
         }
 
         &--small {
-            width: 164px;
             height: 100px;
             display: flex;
             justify-content: center;
@@ -332,5 +330,11 @@
                 box-shadow: 0 0 16px $blue;
             }
         }
+
+        // Media
+            @media screen and (max-width: 480px) {
+                
+            }
+        // .Media
     }
 </style>

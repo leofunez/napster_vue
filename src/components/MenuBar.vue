@@ -120,5 +120,70 @@
                 }
             }
         }
+
+        // Media
+            @media screen and (max-width: 1180px) {
+                width: 100px;
+                height: 100vh;
+                border-radius: 0;
+
+                &__logo {
+                    width: 36px;
+                    height: 36px;
+                    background-position: 0 center;
+                    left: 32px;
+                }
+
+                &__title {
+                    display: none;
+                }
+
+                &__item {
+                    font-size: 0;
+                    height: 50px;
+                    width: 100px;
+                    padding-left: 30px;
+                    background-position: 40px center;
+
+                    &:before {
+                        left: 20px;
+                        top: 24px;
+                    }
+                }
+            }
+
+            @media screen and (max-width: 680px) {
+                width: 60px;
+                height: calc(100vh - 134px);
+
+                &__logo {
+                    left: 12px;
+                    top: 40px;
+                }
+
+                &__items {
+                    padding-top: 0;
+                }
+
+                &__block {
+                    &:not(:last-of-type) {
+                        margin: 0;
+                    }
+                }
+
+                &__item {
+                    width: 100%;
+                    padding-left: 0;
+                    background-position: center;
+
+                    &:before {
+                        left: 46px;
+                        top: 25px;
+                        height: 3px;
+                        width: 3px;
+                    }
+                }
+            }
+        // .Media
     }
 </style>
