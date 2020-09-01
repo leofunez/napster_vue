@@ -158,7 +158,7 @@
                             title: album.name,
                             subtitle: album.artistName,
                             image: `http://direct.napster.com/imageserver/v2/albums/${album.id}/images/500x500.jpg`,
-                            type: 'album'
+                            type: "album"
                         }]
                     })
                 } catch (e) {
@@ -176,7 +176,7 @@
                             title: album.name,
                             subtitle: album.artistName,
                             image: `http://direct.napster.com/imageserver/v2/albums/${album.id}/images/500x500.jpg`,
-                            type: 'album'
+                            type: "album"
                         }]
                     })
                 } catch (e) {
@@ -219,7 +219,7 @@
                             id: genre.id,
                             title: genre.name,
                             image: `http://direct.napster.com/imageserver/images/${genre.id}/240x160.jpg`,
-                            type: 'genre'
+                            type: "genre"
                         }]
                     })
                 } catch (e) {
@@ -229,9 +229,9 @@
             },
             
             getStorageTracks(){
-				if (localStorage.getItem('napsterTracks') !== null) {
+				if (localStorage.getItem("napsterTracks") !== null) {
 					this.tracks_liked = []
-					this.tracks_liked = JSON.parse(localStorage.getItem('napsterTracks'))
+					this.tracks_liked = JSON.parse(localStorage.getItem("napsterTracks"))
                 }
 			},
         },

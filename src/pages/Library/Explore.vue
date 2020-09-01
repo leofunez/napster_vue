@@ -120,7 +120,7 @@
                             title: album.name,
                             subtitle: album.artistName,
                             image: `http://direct.napster.com/imageserver/v2/albums/${album.id}/images/500x500.jpg`,
-                            type: 'album'
+                            type: "album"
                         }]
                     })
                 } catch (e) {
@@ -155,7 +155,7 @@
                             id: artist.id,
                             title: artist.name,
                             image: `http://direct.napster.com/imageserver/v2/artists/${artist.id}/images/633x422.jpg`,
-                            type: 'artist'
+                            type: "artist"
                         }]
                     })
                 } catch (e) {

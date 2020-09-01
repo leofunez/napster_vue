@@ -42,7 +42,7 @@
         },
 
         computed: {
-            ...mapGetters(['GET_CURRENT_PAGE'])
+            ...mapGetters(["GET_CURRENT_PAGE"])
         },
 
         methods: {

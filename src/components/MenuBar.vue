@@ -28,7 +28,7 @@
         height: calc(100vh - 130px);
         border-radius: 0 0 0 50px;
         z-index: 1;
-        background: url('../assets/img/menu/bg.svg') no-repeat center / cover $dark;
+        background: url("../assets/img/menu/bg.svg") no-repeat center / cover $dark;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -36,7 +36,7 @@
         box-shadow: 0 4px 40px #051023b3;
 
         &__logo {
-            background: url('../assets/img/logos/logo.svg') no-repeat center;
+            background: url("../assets/img/logos/logo.svg") no-repeat center;
             width: 100%;
             height: 35px;
             top: 60px;
@@ -71,27 +71,27 @@
             position: relative;
             
             &--dashboard {
-                background: url('../assets/img/menu/dashboard.svg') no-repeat 60px center / 18px;
+                background: url("../assets/img/menu/dashboard.svg") no-repeat 60px center / 18px;
             }
             
             &--explore {
-                background: url('../assets/img/menu/explore.svg') no-repeat 58px center / 20px;
+                background: url("../assets/img/menu/explore.svg") no-repeat 58px center / 20px;
             }
             
             &--playlists {
-                background: url('../assets/img/menu/playlists.svg') no-repeat 58px center / 20px;
+                background: url("../assets/img/menu/playlists.svg") no-repeat 58px center / 20px;
             }
             
             &--my-playlists {
-                background: url('../assets/img/menu/playlists_2.svg') no-repeat 60px center / 22px;
+                background: url("../assets/img/menu/playlists_2.svg") no-repeat 60px center / 22px;
             }
             
             &--my-albums {
-                background: url('../assets/img/menu/albums.svg') no-repeat 60px center / 18px;
+                background: url("../assets/img/menu/albums.svg") no-repeat 60px center / 18px;
             }
             
             &--my-tracks {
-                background: url('../assets/img/menu/tracks.svg') no-repeat 60px center / 17px;
+                background: url("../assets/img/menu/tracks.svg") no-repeat 60px center / 17px;
             }
             
             &--last {

@@ -57,7 +57,7 @@
         },
 
         methods: {
-            ...mapActions(['SET_CURRENT_PAGE']),
+            ...mapActions(["SET_CURRENT_PAGE"]),
 
             getStorageAlbums(){
                 let localStorageAlbums = localStorage.getItem("napsterAlbums")

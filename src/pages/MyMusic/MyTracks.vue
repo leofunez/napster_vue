@@ -64,7 +64,7 @@
         },
 
         methods: {
-            ...mapActions(['SET_CURRENT_PAGE']),
+            ...mapActions(["SET_CURRENT_PAGE"]),
 
             getStorageTracks() {
                 let JSONStorageTracks = JSON.parse(localStorage.getItem("napsterTracks"))

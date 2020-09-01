@@ -81,7 +81,7 @@
         },
 
         created() {
-            this.SET_CURRENT_PAGE('Genre'),
+            this.SET_CURRENT_PAGE("Genre"),
 
             this.getGenreDetail()
             this.getTopPlaylists()
@@ -109,7 +109,7 @@
                         this.top_playlists = [...this.top_playlists, {
                             id: playlist.id,
                             title: playlist.name,
-                            subtitle: playlist.trackCount + ' tracks',
+                            subtitle: playlist.trackCount + " tracks",
                             image: `http://direct.napster.com/imageserver/v2/playlists/${playlist.id}/artists/images/1200x400.jpg`,
                             type: "playlist"
                         }]

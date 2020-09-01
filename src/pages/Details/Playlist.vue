@@ -86,7 +86,7 @@
         },
 
         created() {
-            this.SET_CURRENT_PAGE('Playlist')
+            this.SET_CURRENT_PAGE("Playlist")
             this.isLiked()
             this.getPlaylistDetail()
             

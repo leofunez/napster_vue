@@ -45,12 +45,12 @@
         },
 
         created() {
-            this.SET_CURRENT_PAGE('Artist')
+            this.SET_CURRENT_PAGE("Artist")
             this.getArtistDetail()
         },
 
         methods: {
-            ...mapActions(['SET_CURRENT_PAGE']),
+            ...mapActions(["SET_CURRENT_PAGE"]),
 
             async getArtistDetail(){
                 try {
