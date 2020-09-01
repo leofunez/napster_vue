@@ -70,6 +70,8 @@
                             :artist_id="track.artist_id"
                             :artist_name="track.artist_name"
                             :is_liked="tracks_liked.includes(track.album_id + '@' + track.id)"
+
+                            tracklist_type="top_tracks"
                         />
                     </div>
                 </div>

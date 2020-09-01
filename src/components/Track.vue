@@ -189,6 +189,8 @@
                     } catch (e) {
                         console.log("Album tracks API Errors", e)
                     }
+                } else if (type === "fav_tracks") {
+                    new_tracks_list = this.GET_TRACK_LIST[0]
                 } else {
                     try {
                         const response = await ApiService.getTopTracks(10)

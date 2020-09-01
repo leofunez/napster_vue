@@ -21,6 +21,8 @@
                     :artist_name="track.artist_name"
                     :is_liked="true"
                     @toggleLike="onToggleLike"
+
+                    tracklist_type="fav_tracks"
                 />
             </div>
             
@@ -32,9 +34,8 @@
 </template>
 
 <script>
-    import { Keys } from "@/services/keys"
-    import axios from "axios"
-    import { mapActions } from "vuex"
+    import ApiService from "@/services/api"
+    import { mapActions, mapGetters } from "vuex"
 
     import Track from "@/components/Track"
     import Loader from "@/components/Loader"
@@ -51,7 +52,7 @@
 
         data() {
             return {
-                keys: Keys,
+                // keys: Keys,
                 tracks: [],
                 message: false,
                 error_message: false
@@ -64,37 +65,50 @@
         },
 
         methods: {
-            ...mapActions(["SET_CURRENT_PAGE"]),
+            ...mapActions(["SET_CURRENT_PAGE", "SET_TRACK_LIST", "SET_CURRENT_TRACKLIST"]),
 
-            getStorageTracks() {
+            async getStorageTracks() {
                 let JSONStorageTracks = JSON.parse(localStorage.getItem("napsterTracks"))
                     
                 if (JSONStorageTracks.length > 0) {
-                    JSONStorageTracks.map( track_storage => {
+                    JSONStorageTracks.map( async (track_storage, index) => {
                         let track_id = track_storage.substring(track_storage.lastIndexOf("@") + 1)
 
-                        axios
-                        .get(`https://api.napster.com/v2.2/tracks/${track_id}?apikey=${this.keys.api_key}`)
-                        .then( track => {
-                            let trackData = track.data.tracks[0]
+                        try {
+                            const api_track = await ApiService.getTrack(track_id)
+                            const track = api_track.data.tracks[0]
+                            
                             const track_obj = {
-                                track_id:       trackData.id,
-                                track_name:     trackData.name,
-                                track_url:      trackData.previewURL,
-                                track_duration: trackData.playbackSeconds,
-                                artist_id:      trackData.artistId,
-                                artist_name:    trackData.artistName,
-                                album_id:       trackData.albumId,
-                                album_name:     trackData.albumName,
-                                album_photo:    `https://direct.napster.com/imageserver/v2/albums/${trackData.albumId}/images/500x500.jpg`
+                                track_index:    index,
+                                track_id:       track.id,
+                                track_name:     track.name,
+                                track_url:      track.previewURL,
+                                track_duration: track.playbackSeconds,
+                                artist_id:      track.artistId,
+                                artist_name:    track.artistName,
+                                album_id:       track.albumId,
+                                album_name:     track.albumName,
+                                album_photo:    `https://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
 
                             }
+                            
                             this.tracks = [...this.tracks, track_obj]
-                        })
-                        .catch( () => this.error_message = true )
+
+                            this.fillTrackList()
+                        } catch (e) {
+                            console.log("GetTrack API Errors")
+                        }
                     })
                 } else {
                     this.showMessage()
+                }
+            },
+
+            fillTrackList() {
+                // If there is no a current track, then fill tracklist state with playlist detail
+                if (this.GET_CURRENT_TRACK.album_id !== undefined && this.GET_CURRENT_TRACK.album_id.length === 0)  {
+                    this.SET_TRACK_LIST(this.tracks)
+                    this.SET_CURRENT_TRACKLIST({id: "", type: "fav_tracks"})
                 }
             },
             
@@ -112,6 +126,10 @@
             showMessage() {
                 this.message = true
             }
+        },
+
+        computed: {
+            ...mapGetters(["GET_CURRENT_TRACK"])
         }
     }
 </script>
