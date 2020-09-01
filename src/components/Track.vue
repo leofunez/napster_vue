@@ -13,6 +13,7 @@
 </template>
 
 <script>
+    import ApiService from "@/services/api"
     import { mapGetters, mapActions } from "vuex"
     
     export default {
@@ -28,7 +29,10 @@
             "album_name",
             "album_photo",
             "artist_id",
-            "artist_name"
+            "artist_name",
+
+            "tracklist_type",
+            "tracklist_id"
         ],
 
         data() {
@@ -47,9 +51,13 @@
         },
 
         methods: {
-            ...mapActions(["SET_CURRENT_TRACK", "SET_TRACK_LIST", "SET_PLAYING", "SET_EMPTY_CURRENT_TRACK"]),
+            ...mapActions(["SET_CURRENT_TRACK", "SET_TRACK_LIST", "SET_CURRENT_TRACKLIST", "SET_PLAYING"]),
 
-            playTrack(index) {
+            async playTrack(index) {
+                // Setting new tracklist
+                (this.tracklist_id !== this.GET_CURRENT_TRACKLIST.id) && await this.newTrackList(this.tracklist_type, this.tracklist_id)
+
+                // Play new track
                 this.is_playing = true
                 let track = this.GET_TRACK_LIST[0][index]
                 
@@ -129,11 +137,89 @@
                 if (current_track[0] !== undefined) {
                     current_track[0].track_id === this.track_id && (this.is_playing = true)
                 }
-            }
+            },
+
+            async newTrackList(type, id) {
+                let new_tracks_list = []
+
+                if (type === "playlist") {
+                    try {
+                        const playlist_tracks = await ApiService.getPlaylistTrack(id)
+                        
+                        playlist_tracks.data.tracks.forEach( (track, index) => {                    
+                            const track_obj = {
+                                track_index: index,
+                                track_id: track.id,
+                                track_name: track.name,
+                                track_duration: track.playbackSeconds,
+                                track_url: track.previewURL,
+                                artist_id: track.artistId,
+                                artist_name: track.artistName,
+                                album_id: track.albumId,
+                                album_name: track.albumName,
+                                album_photo: `http://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
+                            }
+
+                            new_tracks_list = [...new_tracks_list, track_obj]
+                        })
+                    } catch (e) {
+                        this.error_message = true
+                        console.log("Playlist tracks API Errors")
+                    }
+                } else if (type === "album") {
+                    try {
+                        const album_tracks = await ApiService.getAlbumTracks(this.album_id)
+
+                        album_tracks.data.tracks.map( (track, index) => {
+                            const track_obj = {
+                                track_index: index,
+                                track_id: track.id,
+                                track_name: track.name,
+                                track_duration: track.playbackSeconds,
+                                track_url: track.previewURL,
+                                artist_id: track.artistId,
+                                artist_name: track.artistName,
+                                album_id: track.albumId,
+                                album_name: track.albumName,
+                                album_photo: `http://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
+                            }
+
+                            new_tracks_list = [...new_tracks_list, track_obj]
+                        })
+                    } catch (e) {
+                        console.log("Album tracks API Errors", e)
+                    }
+                } else {
+                    try {
+                        const response = await ApiService.getTopTracks(10)
+                        response.data.tracks.forEach( track => {
+                            const track_obj = {
+                                track_id: track.id,
+                                track_name: track.name,
+                                track_duration: track.playbackSeconds,
+                                track_url: track.previewURL,
+                                artist_id: track.artistId,
+                                artist_name: track.artistName,
+                                album_id: track.albumId,
+                                album_name: track.albumName,
+                                album_photo: `http://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
+                            }
+
+                            new_tracks_list = [...new_tracks_list, track_obj]
+                        })
+                    } catch (e) {
+                        this.error_message = true
+                        console.log("TopTrack API Error", e)
+                    }
+                }
+
+                this.SET_TRACK_LIST(new_tracks_list)
+                this.SET_CURRENT_TRACKLIST({id, type})
+            },
         },
 
         computed: {
-			...mapGetters(["GET_CURRENT_TRACK", "GET_TRACK_LIST", "GET_PLAYING"]),
+			...mapGetters(["GET_CURRENT_TRACK", "GET_TRACK_LIST", "GET_PLAYING", "GET_CURRENT_TRACKLIST"]),
         },
         
         watch: {

@@ -16,7 +16,7 @@ export default new Vuex.Store({
 			album_photo: ""
 		},
 		
-		current_tracklist: "",
+		current_tracklist: {},
 
 		playing: false,
 		is_paused: false,
@@ -103,7 +103,6 @@ export default new Vuex.Store({
             
         // Current Track
 			SET_CURRENT_TRACK: (context, data) => context.commit("set_current_track", data),
-			SET_EMPTY_CURRENT_TRACK: (context) => context.commit("empty_current_track"),
 		
 		// Current Tracklist
 			SET_CURRENT_TRACKLIST: (context, data) => context.commit("set_current_tracklist", data),

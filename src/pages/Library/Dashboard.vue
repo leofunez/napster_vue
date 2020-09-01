@@ -147,7 +147,7 @@
         },
 
         methods: {
-            ...mapActions(["SET_CURRENT_PAGE", "SET_TRACK_LIST"]),
+            ...mapActions(["SET_CURRENT_PAGE", "SET_TRACK_LIST", "SET_CURRENT_TRACKLIST"]),
 
             async getTopAlbums() {
                 try {
@@ -203,13 +203,13 @@
 
                         this.top_tracks = [...this.top_tracks, track_obj]
                     })
-                    
-                    this.GET_TRACK_LIST.length === 0 && this.SET_TRACK_LIST(this.top_tracks)
+
+                    this.fillTrackList()
                 } catch (e) {
                     this.error_message = true
-                    console.log("TopTrack API Error")
+                    console.log("TopTrack API Error", e)
                 }
-			},
+            },
             
             async getGenres(){
                 try {
@@ -227,6 +227,14 @@
                     console.log("Genres API Error")
                 }
             },
+
+            fillTrackList() {
+                // If there is no a current track, then fill tracklist state with top tracks
+                if (this.GET_CURRENT_TRACK.album_id !== undefined && this.GET_CURRENT_TRACK.album_id.length === 0) {
+                    this.SET_TRACK_LIST(this.top_tracks)
+                    this.SET_CURRENT_TRACKLIST({id: "", type: "top_tracks"})
+                }
+            },
             
             getStorageTracks(){
 				if (localStorage.getItem("napsterTracks") !== null) {
@@ -237,7 +245,7 @@
         },
 
         computed: {
-			...mapGetters(["GET_TRACK_LIST"]),
+			...mapGetters(["GET_CURRENT_TRACK"]),
         }
     }
 </script>

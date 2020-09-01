@@ -40,6 +40,9 @@
                     :album_photo="track.album_photo"
                     :artist_id="track.artist_id"
                     :artist_name="track.artist_name"
+
+                    tracklist_type="playlist"
+                    :tracklist_id="playlist_id"
                 />
             </div>
 
@@ -109,7 +112,7 @@
                     this.getPlaylistTracks()
                 } catch (e) {
                     this.error_message = true
-                    console.log("PlaylistDetail API Errors")
+                    console.log("PlaylistDetail API Errors", e)
                 }
 			},
 
@@ -134,9 +137,19 @@
                         this.playlist_tracks = [...this.playlist_tracks, track_obj]
                         this.filter_tracks = [...this.filter_tracks, track_obj]
                     })
+
+                    this.fillTrackList()
                 } catch (e) {
                     this.error_message = true
-                    console.log("PlaylistDetail API Errors")
+                    console.log("PlaylistDetail API Errors", e)
+                }
+            },
+
+            fillTrackList() {
+                // If there is no a current track, then fill tracklist state with playlist detail
+                if (this.GET_CURRENT_TRACK.album_id !== undefined && this.GET_CURRENT_TRACK.album_id.length === 0)  {
+                    this.SET_TRACK_LIST(this.playlist_tracks)
+                    this.SET_CURRENT_TRACKLIST({id: this.playlist_id, type: "playlist"})
                 }
             },
             
@@ -189,7 +202,7 @@
         },
 
         computed: {
-            ...mapGetters(["GET_TRACK_LIST", "GET_CURRENT_TRACKLIST", "GET_PLAYING"])
+            ...mapGetters(["GET_TRACK_LIST", "GET_CURRENT_TRACKLIST", "GET_PLAYING", "GET_CURRENT_TRACK"])
         },
 
         watch: {

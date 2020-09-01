@@ -176,7 +176,6 @@
 
             nextTrack() {
                 let current_track = this.GET_CURRENT_TRACK[0]
-                console.log(current_track)
                 
                 if (current_track !== undefined) {
                     let index_next_track = ""
