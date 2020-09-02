@@ -17,6 +17,9 @@ import MyAlbums from "@/pages/MyMusic/MyAlbums"
 import MyPlaylists from "@/pages/MyMusic/MyPlaylists"
 import MyTracks from "@/pages/MyMusic/MyTracks"
 
+// Errors
+import NotFound from "@/pages/Error/NotFound"
+
 Vue.use(Router)
 
 export default new Router({
@@ -44,5 +47,7 @@ export default new Router({
         { path: "/my-albums", name: "my-albums", component: MyAlbums },
         { path: "/my-playlists", name: "my-playlists", component: MyPlaylists },
         { path: "/my-tracks", name: "my-tracks", component: MyTracks },
+
+        { path: "*", name: "not-found", component: NotFound}
     ]
 })

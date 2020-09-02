@@ -120,6 +120,14 @@ main {
                     }
                 }
             // .Card
+
+            // 404
+                .page-404 {
+                    &__description {
+                        color: $white;
+                    }
+                }
+            // .404
         }
     }
 }
