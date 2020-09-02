@@ -173,9 +173,6 @@
         &__title {
             color: $white;
             font-size: 18px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
             line-height: 1.4;
             text-transform: capitalize;
         }
@@ -220,6 +217,14 @@
                 background-size: 30px;
                 top: 10px;
                 right: 10px;
+            }
+
+            .card {
+                &__title {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
             }
         }
 
