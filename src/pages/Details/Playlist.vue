@@ -13,14 +13,12 @@
                             :class="{'playlist-album__play-all--pause': is_playing}"
                             v-text="is_playing ? 'Pause all' : 'Play all'" @click="playAll">
                         </button>
-                        <input class="playlist-album__filter" type="search" placeholder="Filter..." @keyup="filter" v-model="filter_string">
+                        <input class="input" type="search" placeholder="Filter..." @keyup="filter" v-model="filter_string">
 
                         <LikeButton :is_dark="true" :active="is_liked" @click.native.prevent="likePlaylist()"/>
                     </div>
                 </div>
             </div>
-
-            <p class="message message--error" v-text="'There are some problems with Napster API'" v-if="error_message"></p>
 
             <div class="divider" v-if="playlist_tracks.length > 0"></div>
 
@@ -46,7 +44,15 @@
                 />
             </div>
 
-            <Loader text="Loading tracks..." :visible="playlist_tracks.length == 0" />
+            <!-- Messages -->
+                <Loader text="Loading tracks..." :visible="playlist_tracks.length == 0 && filter_string.length === 0" />
+
+                <p class="message message--error" v-text="'There are some problems with Napster API'" v-if="error_message"></p>
+
+                <p class="message" v-if="filter_string.length > 0 && playlist_tracks.length === 0">
+                    There is no track with <i class="message__italic">{{filter_string}}</i> name
+                </p>
+            <!-- .Messages -->
         </div>
     </section>
 </template>

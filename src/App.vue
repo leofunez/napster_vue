@@ -2,7 +2,7 @@
 	<main id="app">
 		<MenuBar />
 
-		<section class="napster-container">
+		<section class="napster-container napster-container--dark">
 			<Header />
 			<router-view :key="$route.fullPath"/>
 		</section>

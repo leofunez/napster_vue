@@ -23,6 +23,11 @@ main {
                 }
             }
 
+            .input {
+                background-color: $dark4;
+                color: $white;
+            }
+
             // Header
                 .header {
                     &__notifications,
@@ -92,7 +97,6 @@ main {
                     }
 
                     &__play-all,
-                    &__filter,
                     .like-button {
                         background-color: $dark4;
                         color: $white;

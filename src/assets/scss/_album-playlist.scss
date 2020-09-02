@@ -58,14 +58,4 @@
             background-image: url("../../assets/img/player/pause_color.svg");
         }
     }
-
-    &__filter {
-        padding: 16px 20px;
-        width: 250px;
-        border: 0;
-        background-color: $gray;
-        border-radius: 4px;
-        font-size: 14px;
-        transition: all .4s ease-in-out;
-    }
 }

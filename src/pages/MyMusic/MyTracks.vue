@@ -2,6 +2,10 @@
     <section class="page page__my-tracks">
         <div class="wrapper">
             <p class="message message--error" v-text="'There are some problems with Napster API'" v-if="error_message"></p>
+            
+            <input class="input" type="search" placeholder="Filter..." @keyup="filter" v-model="filter_string">
+
+            <div class="divider" v-if="tracks.length > 0"></div>
 
             <div class="track-list" v-if="tracks.length > 0">
                 <Track
@@ -26,9 +30,15 @@
                 />
             </div>
             
-            <Loader text="Loading my tracks..." :visible="tracks.length == 0 && !message" />
+            <!-- Messages -->
+                <Loader text="Loading my tracks..." :visible="tracks.length == 0 && !message && filter_string.length === 0" />
 
-            <p class="message" v-text="'You have no favorite tracks:('" v-if="message"></p>
+                <p class="message" v-text="'You have no favorite tracks :('" v-if="message"></p>
+
+                <p class="message" v-if="filter_string.length > 0 && tracks.length === 0">
+                    There is no track with <i class="message__italic">{{filter_string}}</i> name
+                </p>
+            <!-- .Messages -->
         </div>
     </section>
 </template>
@@ -55,7 +65,10 @@
                 // keys: Keys,
                 tracks: [],
                 message: false,
-                error_message: false
+                error_message: false,
+
+                filter_string: "",
+                filter_tracks: []
             }
         },
 
@@ -93,6 +106,7 @@
                             }
                             
                             this.tracks = [...this.tracks, track_obj]
+                            this.filter_tracks = [...this.filter_tracks, track_obj]
 
                             this.fillTrackList()
                         } catch (e) {
@@ -125,6 +139,17 @@
 
             showMessage() {
                 this.message = true
+            },
+
+            filter() {
+                let trackListFiltered = this.filter_tracks.filter( track => {
+                    const trackName = track.track_name.toLowerCase()
+                    const trackArtistName = track.artist_name.toLowerCase()
+                    return trackName.includes(this.filter_string.toLowerCase()) || trackArtistName.includes(this.filter_string.toLowerCase())
+                })
+
+                this.tracks = []
+                this.tracks = trackListFiltered
             }
         },
 
