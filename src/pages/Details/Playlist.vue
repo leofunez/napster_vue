@@ -32,7 +32,7 @@
                     :track_duration="track.track_duration"
                     :track_url="track.track_url"
                     :track_subtitle="track.artist_name"
-                    :track_subtitle_link="'/artists/' + track.artist_id"
+                    :track_subtitle_link="'/artist/' + track.artist_id"
                     :album_id="track.album_id"
                     :album_name="track.album_name"
                     :album_photo="track.album_photo"

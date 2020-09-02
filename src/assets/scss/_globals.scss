@@ -71,14 +71,17 @@ main {
     .card-list {
         display: grid;
         grid-gap: 20px;
-        grid-template-columns: repeat(3, 1fr);
 
-        &--4-columns {
+        &--big {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        &--mid {
             grid-template-columns: repeat(4, 1fr);
             grid-gap: 40px 20px;
         }
 
-        &--5-columns {
+        &--small {
             grid-template-columns: repeat(5, 1fr);
             grid-gap: 20px;
         }
@@ -111,13 +114,15 @@ main {
             }
 
             .card-list {
-                grid-template-columns: repeat(2, 1fr);
+                &--big {
+                    grid-template-columns: repeat(2, 1fr);
+                }
 
-                &--4-columns {
+                &--mid {
                     grid-template-columns: repeat(3, 1fr);
                 }
 
-                &--5-columns {
+                &--small {
                     grid-template-columns: repeat(3, 1fr);
                 }
             }
@@ -129,13 +134,15 @@ main {
             }
 
             .card-list {
-                grid-template-columns: 1fr;
+                &--big {
+                    grid-template-columns: 1fr;
+                }
 
-                &--4-columns {
+                &--mid {
                     grid-template-columns: repeat(2, 1fr);
                 }
 
-                &--5-columns {
+                &--small {
                     grid-template-columns: repeat(2, 1fr);
                 }
             }
@@ -143,11 +150,11 @@ main {
 
         @media screen and (max-width: 680px) {
             .card-list {
-                &--4-columns {
+                &--mid {
                     grid-template-columns: 1fr;
                 }
 
-                &--5-columns {
+                &--small {
                     grid-template-columns: repeat(2, 1fr);
                 }
             }

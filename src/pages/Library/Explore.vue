@@ -7,7 +7,7 @@
                 <div class="top-albums" v-if="staff_albums.length > 0">
                     <h2 class="block-title" v-text="'Top Albums'"></h2>
 
-                    <div class="card-list">
+                    <div class="card-list card-list--big">
                         <Card
                             v-for="(album, index) in staff_albums"
                             :key="index"
@@ -30,7 +30,7 @@
                 <div class="new-releases" v-if="top_playlists.length > 0">
                     <h2 class="block-title" v-text="'Top Playlists'"></h2>
 
-                    <div class="card-list card-list--4-columns">
+                    <div class="card-list card-list--mid">
                         <Card
                             v-for="(playlist, index) in top_playlists"
 							:key="index"
@@ -53,7 +53,7 @@
                 <div class="new-releases last-section-block" v-if="top_artists.length > 0">
                     <h2 class="block-title" v-text="'Top Artists'"></h2>
 
-                    <div class="card-list card-list--5-columns">
+                    <div class="card-list card-list--small">
                         <Card
                             v-for="(artist, index) in top_artists"
 							:key="index"

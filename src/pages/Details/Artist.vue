@@ -4,7 +4,7 @@
             <h2 class="page__title" v-text="artist_name"></h2>
             <p class="message message--error" v-text="'There are some problems with Napster API'" v-if="error_message"></p>
             
-            <div class="card-list card-list--4-columns">
+            <div class="card-list card-list--mid">
                 <Card
                     v-for="(album, index) in artist_albums"
                     :key="index"
@@ -13,7 +13,6 @@
                     :subtitle="album.subtitle"
                     :image="album.image"
                     :type="album.type"
-                    card_style="content-out"
                 />
             </div>
         </div>

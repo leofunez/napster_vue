@@ -3,7 +3,7 @@
         <div class="wrapper">
             <p class="message message--error" v-text="'There are some problems with Napster API'" v-if="error_message"></p>
 
-            <div class="card-list card-list--4-columns" v-if="albums.length > 0">
+            <div class="card-list card-list--mid" v-if="albums.length > 0">
                 <Card
                     v-for="(album, index) in albums"
                     :key="index"

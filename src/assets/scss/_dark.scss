@@ -125,13 +125,19 @@ main {
                 }
             // .Card
 
-            // 404
-                .page-404 {
-                    &__description {
+            // Page
+                .page {
+                    &__title {
                         color: $white;
                     }
+                    
+                    &-404 {
+                        &__description {
+                            color: $white;
+                        }
+                    }
                 }
-            // .404
+            // .Page
         }
     }
 }

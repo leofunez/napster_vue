@@ -7,7 +7,7 @@
                 <div class="featured-playlists" v-if="featured_playlists.length > 0">
                     <h2 class="block-title" v-text="'Featured Playlists'"></h2>
 
-                    <div class="card-list card-list--4-columns">
+                    <div class="card-list card-list--big">
                         <Card
                             v-for="(playlist, index) in featured_playlists"
                             :key="index"
@@ -16,6 +16,7 @@
                             :subtitle="playlist.subtitle"
                             :image="playlist.image"
                             :type="playlist.type"
+                            card_style="big"
                         />  
                     </div>
                 </div>
@@ -29,7 +30,7 @@
                 <div class="more-playlists last-section-block" v-if="more_playlists.length > 0">
                     <h2 class="block-title" v-text="'More Playlists'"></h2>
 
-                    <div class="card-list card-list--4-columns">
+                    <div class="card-list card-list--mid">
                         <Card
                             v-for="(playlist, index) in more_playlists"
 							:key="index"
@@ -86,7 +87,7 @@
 
             async getFeaturedPlaylists() {
                 try {
-                    const featured_playlists = await ApiService.getFeaturedPlaylists(12)
+                    const featured_playlists = await ApiService.getFeaturedPlaylists(9)
                     featured_playlists.data.playlists.forEach( playlist => {
                         this.featured_playlists = [...this.featured_playlists, {
                             id: playlist.id,
@@ -104,7 +105,7 @@
 
             async getMorePlaylists() {
                 try {
-                    const more_playlists = await ApiService.getMorePlaylists(8, 10)
+                    const more_playlists = await ApiService.getMorePlaylists(12, 9)
                     more_playlists.data.playlists.forEach( playlist => {
                         this.more_playlists = [...this.more_playlists, {
                             id: playlist.id,
