@@ -260,6 +260,11 @@
                     height: 210px;
                     border-radius: 10px;
                     overflow: hidden;
+
+                    &:before {
+                        height: 50%;
+                        background-image: linear-gradient(180deg, rgba(5,16,35,.4), transparent);
+                    }
                 }
 
                 &__info {
