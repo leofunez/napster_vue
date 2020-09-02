@@ -13,6 +13,7 @@
                     :subtitle="album.subtitle"
                     :image="album.image"
                     :type="album.type"
+                    card_style="content-out"
                 />
             </div>
         </div>

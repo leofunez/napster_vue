@@ -17,7 +17,7 @@
 							:subtitle="playlist.subtitle"
 							:image="playlist.image"
 							:type="playlist.type"
-							card_style="big"
+							card_style="content-out"
                         />  
                     </div>
                 </div>
@@ -29,7 +29,7 @@
 
             <!-- Top Artists -->
                 <div class="new-releases last-section-block" v-if="top_artists.length > 0">
-                    <h2 class="block-title" v-text="'Top Artists'"></h2>
+                    <h2 class="block-title" v-text="'Related artists'"></h2>
 
                     <div class="card-list card-list--small">
                         <Card
