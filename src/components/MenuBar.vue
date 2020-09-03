@@ -122,10 +122,11 @@
         }
 
         // Media
-            @media screen and (max-width: 1180px) {
+            @media screen and (max-width: 1200px) {
                 width: 100px;
                 height: 100vh;
                 border-radius: 0;
+                display: none;
 
                 &__logo {
                     width: 36px;

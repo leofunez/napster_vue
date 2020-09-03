@@ -87,6 +87,11 @@ main {
         }
     }
 
+    .track-list {
+        display: grid;
+        grid-gap: 10px;
+    }
+
     .page {
         margin-bottom: 60px;
 
@@ -98,7 +103,8 @@ main {
 
     .input {
         padding: 16px 20px;
-        width: 250px;
+        max-width: 250px;
+        width: 100%;
         border: 0;
         background-color: $gray;
         border-radius: 4px;
@@ -107,30 +113,50 @@ main {
     }
 
     // Media
-        @media screen and (max-width: 1180px) {
+        @media screen and (max-width: 1380px) {
             .napster-container {
-                width: calc(100% - 100px);
+                padding-right: 0;
+            }
+        }
+
+        @media screen and (max-width: 1200px) {
+            .page {
+                margin-bottom: 20px;
+            }
+
+            .napster-container {
+                width: 100%;
+                max-height: calc(100vh - 130px);
                 border-radius: 0;
+                padding-left: 0;
             }
 
-            .card-list {
-                &--big {
-                    grid-template-columns: repeat(2, 1fr);
-                }
+            // .card-list {
+            //     &--big {
+            //         grid-template-columns: repeat(2, 1fr);
+            //     }
 
-                &--mid {
-                    grid-template-columns: repeat(3, 1fr);
-                }
+            //     &--mid {
+            //         grid-template-columns: repeat(3, 1fr);
+            //     }
 
-                &--small {
-                    grid-template-columns: repeat(3, 1fr);
-                }
-            }
+            //     &--small {
+            //         grid-template-columns: repeat(4, 1fr);
+            //     }
+            // }
         }
 
-        @media screen and (max-width: 680px) {
+        @media screen and (max-width: 748px) {
+            .page {
+                margin-bottom: 10px;
+            }
+            
+            .divider {
+                margin: 20px auto;
+            }
+
             .napster-container {
-                width: calc(100% - 60px);
+                max-height: calc(100vh - 115px);
             }
 
             .card-list {
@@ -143,12 +169,26 @@ main {
                 }
 
                 &--small {
-                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-columns: repeat(3, 1fr);
+                }
+
+                &--genres {
+                    grid-template-columns: none;
+                    display: flex;
+                    flex-wrap: wrap;
                 }
             }
         }
 
-        @media screen and (max-width: 680px) {
+        @media screen and (max-width: 480px) {
+            .page {
+                margin-bottom: 20px;
+            }
+
+            .track-list {
+                grid-gap: 6px;
+            }
+
             .card-list {
                 &--mid {
                     grid-template-columns: 1fr;
@@ -156,6 +196,10 @@ main {
 
                 &--small {
                     grid-template-columns: repeat(2, 1fr);
+                }
+
+                &--genres {
+                    grid-template-columns: none;
                 }
             }
         }

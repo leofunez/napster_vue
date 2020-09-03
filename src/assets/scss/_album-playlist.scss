@@ -6,7 +6,7 @@
     }
 
     &__photo {
-        min-width: 100px;
+        width: 100px;
         height: 100px;
         margin-right: 20px;
         background-size: cover;
@@ -30,7 +30,9 @@
     }
 
     &__bottom {
-        display: flex;
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: 127px 1fr 70px;
 
         .like-button {
             background-color: $gray;
@@ -43,7 +45,6 @@
 
     &__play-all {
         padding: 10px 20px 10px 50px;
-        margin-right: 20px;
         cursor: pointer;
         display: flex;
         font-size: 14px;
@@ -52,10 +53,51 @@
         align-items: center;
         border-radius: 4px;
         background: url("../../assets/img/player/play_color.svg") no-repeat 20px center / 20px $gray;
-        transition: all .4s ease-in-out;
+        transition: background-color .4s ease-in-out;
 
         &--pause {
             background-image: url("../../assets/img/player/pause_color.svg");
         }
     }
+
+    // Media
+        @media screen and (max-width: 680px) {
+            &__top {
+                flex-direction: column;
+            }
+
+            &__photo {
+                margin: 0 0 20px;
+                height: 0;
+                width: 100%;
+                padding-bottom: 40%;
+            }
+
+            &__bottom {
+                margin-top: 10px;
+                grid-template-columns: 50px 1fr 50px;
+                grid-gap: 10px;
+                
+                .input {
+                    flex: 1;
+                    max-width: initial;
+                }
+            }
+
+            &__play-all {
+                font-size: 0;
+                width: 50px;
+                padding: 0;
+                background-position: 18px center;
+
+                &--pause {
+                    background-position: 16px center;
+                }
+            }
+
+            .like-button {
+                width: 50px;
+            }
+        }
+    // .Media
 }

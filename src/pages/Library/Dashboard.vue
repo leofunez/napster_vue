@@ -83,7 +83,7 @@
                 <div class="genres last-section-block" v-if="genres.length > 0">
                     <h2 class="block-title" v-text="'Genres'"></h2>
 
-                    <div class="card-list card-list--small">
+                    <div class="card-list card-list--small card-list--genres">
                         <Card
                             v-for="(genre, index) in genres"
                             :key="index"

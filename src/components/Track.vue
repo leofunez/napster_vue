@@ -251,21 +251,20 @@
     @import "../assets/scss/_colors.scss";
 
     .track {
-        display: flex;
+        display: grid;
+        grid-template-columns: 30px 2fr 1fr 60px 40px;
+        grid-gap: 10px;
         align-items: center;
         font-size: 14px;
         font-weight: 400;
-        padding: 12px 20px;
+        padding: 12px 10px;
         background-color: $gray;
-        margin-bottom: 10px;
         border-radius: 4px;
         transition: all .4s ease-in-out;
 
         &__play {
             background: url("../assets/img/player/play_color.svg") no-repeat center / 15px;
-            width: 30px;
             height: 30px;
-            margin-right: 15px;
 
             &--is-playing {
                 background-image: url("../assets/img/player/pause_color.svg");
@@ -274,17 +273,12 @@
         }
         
         &__title {
-            width: 50%;
-            margin-right: 15px;
-
             &--active {
                 font-weight: 500;
             }
         }
 
         &__subtitle {
-            width: 30%;
-            margin-right: 15px;
             color: $dark;
             
             &:hover {
@@ -293,11 +287,9 @@
         }
 
         &__like {
-            width: 60px;
             height: 30px;
             background: url("../assets/img/like_dark.svg") no-repeat center / 15px;
             padding: 0;
-            margin-right: 15px;
             transition: all .1s ease-in-out;
 
             &:hover {
@@ -313,5 +305,25 @@
             }
         }
 
+        // Media
+            @media screen and (max-width: 680px) {
+                grid-template-columns: 30px 1fr 120px 40px;
+                grid-gap: 5px;
+                padding: 5px;
+                font-size: 12px;
+
+                &__duration {
+                    display: none;
+                }
+            }
+
+            @media screen and (max-width: 480px) {
+                grid-template-columns: 30px 1fr 40px;
+
+                &__subtitle {
+                    display: none;
+                }
+            }
+        // .Media
     }
 </style>

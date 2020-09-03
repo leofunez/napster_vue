@@ -230,6 +230,7 @@
 
         &--small {
             height: 100px;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -299,7 +300,8 @@
 
         &--circled {
             border-radius: 50%;
-            height: 175px;
+            height: 0;
+            padding-bottom: 90%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -307,8 +309,12 @@
 
             .card {
                 &__info {
-                    position: relative;
+                    position: absolute;
                     padding: 0;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
 
                 &__title {
@@ -342,8 +348,57 @@
         }
 
         // Media
-            @media screen and (max-width: 480px) {
+            @media screen and (max-width: 680px) {
+                &--small {
+                    height: auto;
+                    border-radius: 0;
+                    width: auto;
 
+                    .card {
+                        &__image {
+                            display: none;
+                        }
+
+                        &__info {
+                            padding: 0;
+                        }
+
+                        &__title {
+                            color: $dark;
+                            font-weight: 500;
+                            text-align: left;
+                            position: relative;
+                            padding-left: 10px;
+
+                            &:before {
+                                content: "";
+                                height: 4px;
+                                width: 4px;
+                                background-color: $blue;
+                                border-radius: 50%;
+                                position: absolute;
+                                top: 6px;
+                                left: 0;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        box-shadow: none;
+                    }
+                }
+            }
+
+            @media screen and (max-width: 480px) {
+                &--circled {
+                    padding-bottom: 85%;
+
+                    .card {
+                        &__title {
+                            font-size: 14px;
+                        }
+                    }
+                }
             }
         // .Media
     }

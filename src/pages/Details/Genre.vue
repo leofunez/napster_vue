@@ -4,9 +4,9 @@
             <h2 class="page__title" v-text="genre_title"></h2>
             <p class="message message--error" v-text="'There are some problems with Napster API'" v-if="error_message"></p>
 
-            <!-- Top Playlists -->
+            <!-- Playlists -->
                 <div class="new-releases" v-if="top_playlists.length > 0">
-                    <h2 class="block-title" v-text="'Top Playlists'"></h2>
+                    <h2 class="block-title" v-text="'Playlists'"></h2>
 
                     <div class="card-list card-list--mid">
                         <Card
@@ -23,7 +23,7 @@
                 </div>
 
                 <Loader text="Loading playlists..." :visible="top_playlists.length == 0" />
-            <!-- .Top Playlists -->
+            <!-- .Playlists -->
 
             <div class="divider" v-if="top_artists.length > 0"></div>
 

@@ -469,45 +469,56 @@
             }
         // .Volume
 
-        @media screen and (max-width: 1200px) {
-            padding-left: 140px;
-            
-            &__current-song {
-                padding-right: 40px;
+        // Media
+            @media screen and (max-width: 1200px) {
+                height: 130px;
+                padding: 40px 20px;
+                
+                &__current-song {
+                    padding-right: 40px;
+                }
+                
+                &__volume {
+                    padding-left: 40px;
+                }
             }
-            
-            &__volume {
-                padding-left: 40px;
-            }
-        }
 
-        @media screen and (max-width: 748px) {
-            padding: 60px 20px 20px 20px;
-            flex-direction: column;
-            height: auto;
-            z-index: 1;
-            background-image: linear-gradient(to top, $dark 40%, #05102300);
-            
-            &__current-song {
-                padding: 0;
-                width: 100%;
+            @media screen and (max-width: 680px) {
+                padding: 50px 20px 10px 20px;
+                flex-direction: column;
+                height: auto;
+                
+                &__current-song {
+                    padding: 0;
+                    width: 100%;
+                }
+                
+                &__photo {
+                    width: 30px;
+                    height: 30px;
+                    min-width: initial;
+                    margin-right: 10px;
+                    border-radius: 2px;
+                }
+
+                &__song-title {
+                    margin-bottom: 0;
+                    font-size: 14px;
+                }
+
+                &__artist {
+                    font-size: 12px;
+                }
+                
+                &__controls {
+                    margin-top: 10px;
+                    width: 100%;
+                }
+                
+                &__volume {
+                    display: none;
+                }
             }
-            
-            &__photo {
-                display: none;
-            }
-            
-            &__text {
-                display: none
-            }
-            
-            &__controls {
-                width: 100%;
-            }
-            
-            &__volume {
-                display: none;
-            }
-        }
+        // .Media
     }
 </style>

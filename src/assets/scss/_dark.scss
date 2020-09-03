@@ -122,6 +122,14 @@ main {
                             } 
                         }
                     }
+
+                    &--small {
+                        .card {
+                            &__title {
+                                color: $white;
+                            }
+                        }
+                    }
                 }
             // .Card
 

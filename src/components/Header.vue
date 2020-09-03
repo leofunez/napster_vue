@@ -180,5 +180,15 @@
                 }
             }
         }
+
+        // Media
+            @media screen and (max-width: 680px){
+                &__profile {
+                    &-name {
+                        display: none;
+                    }
+                }
+            }
+        // .Media
     }
 </style>
