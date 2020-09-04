@@ -484,9 +484,8 @@
             }
 
             @media screen and (max-width: 748px) {
-                padding: 50px 20px 10px 20px;
+                padding: 20px 20px 10px 20px;
                 flex-direction: column;
-                height: auto;
                 
                 &__current-song {
                     padding: 0;

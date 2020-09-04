@@ -252,7 +252,7 @@
 
     .track {
         display: grid;
-        grid-template-columns: 30px 2fr 1fr 60px 40px;
+        grid-template-columns: 35px 2fr 1fr 60px 40px;
         grid-gap: 10px;
         align-items: center;
         font-size: 14px;
@@ -263,12 +263,12 @@
         transition: all .4s ease-in-out;
 
         &__play {
-            background: url("../assets/img/player/play_color.svg") no-repeat center / 15px;
+            background: url("../assets/img/player/play_color.svg") no-repeat center / 18px;
             height: 30px;
 
             &--is-playing {
                 background-image: url("../assets/img/player/pause_color.svg");
-                background-position: 6px center;
+                background-position: 8px center;
             }
         }
         
@@ -288,7 +288,7 @@
 
         &__like {
             height: 30px;
-            background: url("../assets/img/like_dark.svg") no-repeat center / 15px;
+            background: url("../assets/img/like_dark.svg") no-repeat center / 18px;
             padding: 0;
             transition: all .1s ease-in-out;
 
@@ -308,9 +308,12 @@
         // Media
             @media screen and (max-width: 680px) {
                 grid-template-columns: 30px 1fr 120px 40px;
-                grid-gap: 5px;
-                padding: 5px;
-                font-size: 12px;
+
+                &__title {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
 
                 &__duration {
                     display: none;

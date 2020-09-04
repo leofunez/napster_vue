@@ -72,12 +72,17 @@
 
             &__subtitle {
                 font-size: 12px;
+                margin-bottom: 20px;
+            }
+
+            &__info {
+                text-align: center;
             }
 
             &__photo {
-                margin: 0 0 20px;
+                margin: 0 auto 20px;
                 height: 0;
-                width: 100%;
+                width: 45%;
                 padding-bottom: 40%;
             }
 

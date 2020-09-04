@@ -120,13 +120,15 @@ main {
         }
 
         @media screen and (max-width: 1200px) {
+            display: grid;
+            grid-template-rows: 1fr 130px;
+
             .page {
                 margin-bottom: 20px;
             }
 
             .napster-container {
                 width: 100%;
-                max-height: calc(100vh - 130px);
                 border-radius: 0;
                 padding-left: 0;
             }
@@ -153,10 +155,6 @@ main {
                 &__title {
                     font-size: 50px;
                 }
-            }
-
-            .napster-container {
-                max-height: calc(100vh - 115px);
             }
 
             .card-list {
