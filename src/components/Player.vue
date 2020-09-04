@@ -483,7 +483,7 @@
                 }
             }
 
-            @media screen and (max-width: 680px) {
+            @media screen and (max-width: 748px) {
                 padding: 50px 20px 10px 20px;
                 flex-direction: column;
                 height: auto;

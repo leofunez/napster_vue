@@ -126,22 +126,24 @@
                 try {
                     const playlist_tracks = await ApiService.getPlaylistTrack(this.playlist_id)
 
-                    playlist_tracks.data.tracks.forEach( (track, index) => {                    
-                        const track_obj = {
-                            track_index: index,
-                            track_id: track.id,
-                            track_name: track.name,
-                            track_duration: track.playbackSeconds,
-                            track_url: track.previewURL,
-                            artist_id: track.artistId,
-                            artist_name: track.artistName,
-                            album_id: track.albumId,
-                            album_name: track.albumName,
-                            album_photo: `http://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
-                        }
+                    playlist_tracks.data.tracks.forEach( (track, index) => { 
+                        if (track.id && track.name && track.previewURL && track.artistName) {                 
+                            const track_obj = {
+                                track_index: index,
+                                track_id: track.id,
+                                track_name: track.name,
+                                track_duration: track.playbackSeconds,
+                                track_url: track.previewURL,
+                                artist_id: track.artistId,
+                                artist_name: track.artistName,
+                                album_id: track.albumId,
+                                album_name: track.albumName,
+                                album_photo: `http://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
+                            }
 
-                        this.playlist_tracks = [...this.playlist_tracks, track_obj]
-                        this.filter_tracks = [...this.filter_tracks, track_obj]
+                            this.playlist_tracks = [...this.playlist_tracks, track_obj]
+                            this.filter_tracks = [...this.filter_tracks, track_obj]
+                        }
                     })
 
                     this.fillTrackList()

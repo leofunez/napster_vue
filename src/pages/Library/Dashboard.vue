@@ -191,19 +191,21 @@
                 try {
                     const response = await ApiService.getTopTracks(10)
                     response.data.tracks.forEach( track => {
-                        const track_obj = {
-                            track_id: track.id,
-                            track_name: track.name,
-                            track_duration: track.playbackSeconds,
-                            track_url: track.previewURL,
-                            artist_id: track.artistId,
-                            artist_name: track.artistName,
-                            album_id: track.albumId,
-                            album_name: track.albumName,
-                            album_photo: `http://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
-                        }
+                        if (track.id && track.name && track.previewURL && track.artistName) {
+                            const track_obj = {
+                                track_id: track.id,
+                                track_name: track.name,
+                                track_duration: track.playbackSeconds,
+                                track_url: track.previewURL,
+                                artist_id: track.artistId,
+                                artist_name: track.artistName,
+                                album_id: track.albumId,
+                                album_name: track.albumName,
+                                album_photo: `http://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
+                            }
 
-                        this.top_tracks = [...this.top_tracks, track_obj]
+                            this.top_tracks = [...this.top_tracks, track_obj]
+                        }
                     })
 
                     this.fillTrackList()

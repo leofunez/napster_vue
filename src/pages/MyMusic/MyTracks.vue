@@ -91,24 +91,26 @@
                             const api_track = await ApiService.getTrack(track_id)
                             const track = api_track.data.tracks[0]
                             
-                            const track_obj = {
-                                track_index:    index,
-                                track_id:       track.id,
-                                track_name:     track.name,
-                                track_url:      track.previewURL,
-                                track_duration: track.playbackSeconds,
-                                artist_id:      track.artistId,
-                                artist_name:    track.artistName,
-                                album_id:       track.albumId,
-                                album_name:     track.albumName,
-                                album_photo:    `https://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
+                            if (track.id && track.name && track.previewURL && track.artistName) {
+                                const track_obj = {
+                                    track_index:    index,
+                                    track_id:       track.id,
+                                    track_name:     track.name,
+                                    track_url:      track.previewURL,
+                                    track_duration: track.playbackSeconds,
+                                    artist_id:      track.artistId,
+                                    artist_name:    track.artistName,
+                                    album_id:       track.albumId,
+                                    album_name:     track.albumName,
+                                    album_photo:    `https://direct.napster.com/imageserver/v2/albums/${track.albumId}/images/500x500.jpg`
 
+                                }
+                                
+                                this.tracks = [...this.tracks, track_obj]
+                                this.filter_tracks = [...this.filter_tracks, track_obj]
+
+                                this.fillTrackList()
                             }
-                            
-                            this.tracks = [...this.tracks, track_obj]
-                            this.filter_tracks = [...this.filter_tracks, track_obj]
-
-                            this.fillTrackList()
                         } catch (e) {
                             console.log("GetTrack API Errors")
                         }
