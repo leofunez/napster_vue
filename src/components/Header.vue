@@ -183,6 +183,12 @@
 
         // Media
             @media screen and (max-width: 680px){
+                margin-bottom: 20px;
+                
+                &__title {
+                    font-size: 18px;
+                }
+
                 &__profile {
                     &-name {
                         display: none;

@@ -114,15 +114,8 @@ main {
 
             // Card
                 .card {
-                    &--content-out {
-                        .card {
-                            &__title,
-                            &__subtitle {
-                                color: $white;
-                            } 
-                        }
-                    }
-
+                    &--content-out,
+                    &--big,
                     &--small {
                         .card {
                             &__title {

@@ -131,28 +131,28 @@ main {
                 padding-left: 0;
             }
 
-            // .card-list {
-            //     &--big {
-            //         grid-template-columns: repeat(2, 1fr);
-            //     }
+            .card-list {
+                &--big {
+                    grid-template-columns: repeat(2, 1fr);
+                }
 
-            //     &--mid {
-            //         grid-template-columns: repeat(3, 1fr);
-            //     }
+                &--mid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
 
-            //     &--small {
-            //         grid-template-columns: repeat(4, 1fr);
-            //     }
-            // }
+                &--small {
+                    grid-template-columns: repeat(4, 1fr);
+                }
+            }
         }
 
         @media screen and (max-width: 748px) {
             .page {
                 margin-bottom: 10px;
-            }
-            
-            .divider {
-                margin: 20px auto;
+
+                &__title {
+                    font-size: 50px;
+                }
             }
 
             .napster-container {
@@ -183,6 +183,14 @@ main {
         @media screen and (max-width: 480px) {
             .page {
                 margin-bottom: 20px;
+
+                &__title {
+                    font-size: 35px;
+                }
+            }
+
+            .block-title {
+                font-size: 15px;
             }
 
             .track-list {
@@ -192,6 +200,7 @@ main {
             .card-list {
                 &--mid {
                     grid-template-columns: 1fr;
+                    grid-gap: 20px;
                 }
 
                 &--small {

@@ -9,24 +9,20 @@
             {'card--small' : card_style === 'small'},
             {'card--circled' : card_style === 'circled'}]"
         >
-        
-        <div class="card__info" v-if="card_style !== 'content-out'">
-            <h2 class="card__title" v-text="title"></h2>
-            <p class="card__subtitle" v-text="subtitle"></p>
+
+        <div class="card__image" v-if="image" :style="{'background' : 'url(' + image + ') no-repeat center top / cover'}">
+            <LikeButton
+                v-if="card_style !== 'small' && card_style !== 'circled'"
+                :active="is_liked"
+                @click.native.prevent="likeCard(type, id)"
+            />
         </div>
-
-        <LikeButton
-            v-if="card_style !== 'small' && card_style !== 'circled'"
-            :active="is_liked"
-            @click.native.prevent="likeCard(type, id)"
-        />
         
-        <div class="card__image" v-if="image" :style="{'background' : 'url(' + image + ') no-repeat center top / cover #091629'}"></div>
-
-        <div class="card__info" v-if="card_style === 'content-out'">
+        <div class="card__info">
             <h2 class="card__title" v-text="title"></h2>
             <h3 class="card__subtitle" v-text="subtitle"></h3>
         </div>
+        
     </router-link>
 </template>
 
@@ -188,7 +184,7 @@
             left: 0;
             top: 0;
             overflow: hidden;
-            background-color: $dark;
+            background-color: $gray;
             transition: all 0.2s ease-in-out;
 
             &:before {
@@ -390,6 +386,89 @@
             }
 
             @media screen and (max-width: 480px) {
+                border-radius: 0;
+                height: auto;
+                padding: 0;
+                display: grid;
+                grid-template-columns: 40% 1fr;
+                grid-gap: 20px;
+
+                &__info {
+                    position: relative;
+                    padding: 0;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+
+                &__image {
+                    position: relative;
+                    height: 0;
+                    padding-bottom: 95%;
+                    border-radius: 20px;
+
+                    &:before {
+                        background-image: linear-gradient(180deg, rgba(5, 16, 35, 0.8), transparent);
+                    }
+                }
+
+                &__title {
+                    font-size: 14px;
+                }
+
+                &__subtitle {
+                    color: $blue;
+                    opacity: 0.8;
+                }
+
+                &:hover {
+                    box-shadow: none;
+                }
+
+                .like-button {
+                    background-size: 20px;
+                    height: 30px;
+                    width: 30px;
+                }
+
+                &--content-out {
+                    .card {
+                        &__info {
+                            padding-top: 0;
+                        }
+
+                        &__subtitle {
+                            font-weight: 800;
+                            opacity: 0.8;
+                        }
+
+                        &__image {
+                            border-radius: 20px;
+                            height: 0;
+                            padding-bottom: 95%;
+
+                            &:before {
+                                background-image: linear-gradient(180deg, rgba(5, 16, 35, 0.8), transparent);
+                            }
+                        }
+                    }
+                }
+
+                &--big {
+                    .card {
+                        &__title {
+                            white-space: normal;
+                            color: $dark;
+                            margin-bottom: 5px;
+                        }
+
+                        &__subtitle {
+                            color: $blue;
+                            opacity: 0.8;
+                        }
+                    }
+                }
+
                 &--circled {
                     padding-bottom: 85%;
 
@@ -397,7 +476,22 @@
                         &__title {
                             font-size: 14px;
                         }
+
+                        &__image {
+                            height: 100%;
+                            padding: 0;
+                            position: absolute;
+
+                            &:after {
+                                width: 90%;
+                                height: 180%;
+                            }
+                        }
                     }
+                }
+
+                &--small {
+                    display: flex;
                 }
             }
         // .Media

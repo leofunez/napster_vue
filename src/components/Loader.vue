@@ -23,5 +23,11 @@
             background: url("../assets/img/loader.svg") no-repeat 0 center / 40px;
             padding-left: 45px;
         }
+
+        @media screen and (max-width: 480px) {
+            &__text {
+                font-size: 14px;
+            }
+        }
     }
 </style>
