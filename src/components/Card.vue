@@ -471,6 +471,7 @@
 
                 &--circled {
                     padding-bottom: 85%;
+                    border: 0;
 
                     .card {
                         &__title {

@@ -473,6 +473,7 @@
             @media screen and (max-width: 1200px) {
                 height: 130px;
                 padding: 40px 20px;
+                box-shadow: inset 0px 10px 15px #040d1e75;
                 
                 &__current-song {
                     padding-right: 40px;
@@ -484,7 +485,7 @@
             }
 
             @media screen and (max-width: 748px) {
-                padding: 20px 20px 10px 20px;
+                padding: 20px;
                 flex-direction: column;
                 
                 &__current-song {
