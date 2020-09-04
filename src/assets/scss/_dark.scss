@@ -1,144 +1,160 @@
 @import "./_colors.scss";
 
 main {
-    background-color: $dark2;
+    &.is-dark {
+        background-color: $dark2;
 
-    .napster-container {
-        &--dark {
+        .napster-container {
             background-color: $dark2;
+        }
 
-            .divider {
-                background: $dark3;
+        .divider {
+            background: $dark3;
+        }
+
+        .block-title,
+        .loader,
+        .message {
+            color: $white;
+        }
+
+        .loader {
+            &__text {
+                background-image: url("./assets/img/loader_dark.svg");
             }
+        }
 
-            .block-title,
-            .loader,
-            .message {
-                color: $white;
-            }
+        .input {
+            background-color: $dark4;
+            color: $white;
+        }
 
-            .loader {
-                &__text {
-                    background-image: url("./assets/img/loader_dark.svg");
-                }
-            }
-
-            .input {
-                background-color: $dark4;
-                color: $white;
-            }
-
-            // Header
-                .header {
-                    &__notifications,
-                    &__search,
-                    &__dark-mode {
-                        &:hover {
-                            background-color: $dark4;
-                        }
-                    }
-
-                    &__dark-mode {
-                        background-image: url("./assets/img/dark_mode_on.svg");
-                    }
-
-                    &__profile{
-                        &-name {
-                            color: $white;
-                        }
-
-                        &-menu {
-                            background-color: $dark3;
-                            color: $white;
-                            box-shadow: none;
-                            border-color: $dark4;
-
-                            &-item {
-                                &:hover {
-                                    color: $white;
-                                }
-                            }
-                        }
-                    }
-                }
-            // .Header
-
-            // Track
-                .track {
-                    background-color: $dark4;
-                    color: $white;
-
-                    &__subtitle {
-                        color: $white;
-
-                        &:hover {
-                            color: $blue;
-                        }
-                    }
-
-                    &__like {
-                        background-image: url("./assets/img/like_white.svg");
-
-                        &--active {
-                            background-image: url("./assets/img/liked.svg");
-                        }
-                    }
-                }
-            // .Track
-
-            // Playlist / Album Page
-                .playlist-album {
-                    &__title {
-                        color: $white;
-                    }
-    
-                    &__subtitle {
-                        color: $white;
-                    }
-
-                    &__play-all,
-                    .like-button {
+        // Header
+            .header {
+                &__notifications,
+                &__search,
+                &__dark-mode {
+                    &:hover {
                         background-color: $dark4;
+                    }
+                }
+
+                &__dark-mode {
+                    background-image: url("./assets/img/dark_mode_on.svg");
+                }
+
+                &__profile{
+                    &-name {
                         color: $white;
                     }
 
-                    .like-button {
-                        background-image: url("./assets/img/like_white.svg");
+                    &-menu {
+                        background-color: $dark3;
+                        color: $white;
+                        box-shadow: none;
+                        border-color: $dark4;
 
-                        &--active {
-                            background-image: url("./assets/img/liked.svg");
-                        }
-                    }
-                }
-            // .Playlist / Album Page
-
-            // Card
-                .card {
-                    &--content-out,
-                    &--big,
-                    &--small {
-                        .card {
-                            &__title {
+                        &-item {
+                            &:hover {
                                 color: $white;
                             }
                         }
                     }
                 }
-            // .Card
+            }
+        // .Header
 
-            // Page
-                .page {
-                    &__title {
-                        color: $white;
+        // Track
+            .track {
+                background-color: $dark4;
+                color: $white;
+
+                &__subtitle {
+                    color: $white;
+
+                    &:hover {
+                        color: $blue;
                     }
-                    
-                    &-404 {
-                        &__description {
+                }
+
+                &__like {
+                    background-image: url("./assets/img/like_white.svg");
+
+                    &--active {
+                        background-image: url("./assets/img/liked.svg");
+                    }
+                }
+            }
+        // .Track
+
+        // MenuBar
+            .menu-bar {
+                background-color: $dark2;
+                border-color: $dark3;
+                border-width: 1px;
+
+                &__item {
+                    color: $white;
+                }
+            }
+        // .MenuBar
+
+        // Playlist / Album Page
+            .playlist-album {
+                &__title {
+                    color: $white;
+                }
+
+                &__subtitle {
+                    color: $white;
+                }
+
+                &__play-all,
+                .like-button {
+                    background-color: $dark4;
+                    color: $white;
+                }
+
+                .like-button {
+                    background-image: url("./assets/img/like_white.svg");
+
+                    &--active {
+                        background-image: url("./assets/img/liked.svg");
+                    }
+                }
+            }
+        // .Playlist / Album Page
+
+        // Card
+            .card {
+                &--content-out,
+                &--big,
+                &--small {
+                    .card {
+                        &__title {
                             color: $white;
+                        }
+
+                        &__subtitle {
+                            color: $blue;
                         }
                     }
                 }
-            // .Page
-        }
+            }
+        // .Card
+
+        // Page
+            .page {
+                &__title {
+                    color: $white;
+                }
+                
+                &-404 {
+                    &__description {
+                        color: $white;
+                    }
+                }
+            }
+        // .Page
     }
 }

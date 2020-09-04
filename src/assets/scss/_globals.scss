@@ -17,6 +17,8 @@ main {
     display: flex;
     flex-wrap: wrap;
     font-weight: 500;
+    background-color: $white;
+    min-height: 100vh;
 
     .napster-container {
         width: calc(100% - 256px);
@@ -130,8 +132,9 @@ main {
             .napster-container {
                 width: 100%;
                 border-radius: 0;
-                padding-left: 0;
+                padding: 100px 0 0;
                 z-index: 0;
+                box-shadow: none;
             }
 
             .card-list {

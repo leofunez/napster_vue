@@ -268,7 +268,7 @@
 
             &--is-playing {
                 background-image: url("../assets/img/player/pause_color.svg");
-                background-position: 8px center;
+                background-position: 5px center;
             }
         }
         

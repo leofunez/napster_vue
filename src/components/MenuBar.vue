@@ -1,21 +1,23 @@
 <template>
     <div class="menu-bar">
-        <router-link to="/" class="menu-bar__logo"></router-link>
+        <div class="menu-bar__wrapper">
+            <router-link to="/" class="menu-bar__logo"></router-link>
 
-        <div class="menu-bar__items">
-            <div class="menu-bar__block">
-                <h2 class="menu-bar__title">Library</h2>
-                <router-link to="/" class="menu-bar__item menu-bar__item--dashboard" active-class="menu-bar__item--active" exact>Dashboard</router-link>
-                <router-link to="/explore" class="menu-bar__item menu-bar__item--explore" active-class="menu-bar__item--active">Explore</router-link>
-                <router-link to="/playlists" class="menu-bar__item menu-bar__item--playlists" active-class="menu-bar__item--active">Playlists</router-link>
+            <div class="menu-bar__items">
+                <div class="menu-bar__block">
+                    <h2 class="menu-bar__title">Library</h2>
+                    <router-link to="/" class="menu-bar__item menu-bar__item--dashboard" active-class="menu-bar__item--active" exact>Dashboard</router-link>
+                    <router-link to="/explore" class="menu-bar__item menu-bar__item--explore" active-class="menu-bar__item--active">Explore</router-link>
+                    <router-link to="/playlists" class="menu-bar__item menu-bar__item--playlists" active-class="menu-bar__item--active">Playlists</router-link>
+                </div>
+
+                <div class="menu-bar__block">
+                    <div class="menu-bar__title">My Music</div>
+                    <router-link to="/my-playlists" class="menu-bar__item menu-bar__item--my-playlists" active-class="menu-bar__item--active">Playlists</router-link>
+                    <router-link to="/my-albums" class="menu-bar__item menu-bar__item--my-albums" active-class="menu-bar__item--active">Albums</router-link>
+                    <router-link to="/my-tracks" class="menu-bar__item menu-bar__item--my-tracks" active-class="menu-bar__item--active">Tracks</router-link>
+                </div>    
             </div>
-
-            <div class="menu-bar__block">
-                <div class="menu-bar__title">My Music</div>
-                <router-link to="/my-playlists" class="menu-bar__item menu-bar__item--my-playlists" active-class="menu-bar__item--active">Playlists</router-link>
-                <router-link to="/my-albums" class="menu-bar__item menu-bar__item--my-albums" active-class="menu-bar__item--active">Albums</router-link>
-                <router-link to="/my-tracks" class="menu-bar__item menu-bar__item--my-tracks" active-class="menu-bar__item--active">Tracks</router-link>
-            </div>    
         </div>
     </div>
 </template>
@@ -34,6 +36,13 @@
         justify-content: center;
         position: relative;
         box-shadow: 0 4px 40px #051023b3;
+        transition: background-color 0.4s ease-in-out;
+
+        &__wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
         &__logo {
             background: url("../assets/img/logos/logo.svg") no-repeat center;
@@ -123,66 +132,90 @@
 
         // Media
             @media screen and (max-width: 1200px) {
-                width: 100px;
-                height: 100vh;
+                width: 100%;
+                height: 100px;
+                margin: 0 auto;
                 border-radius: 0;
-                display: none;
+                padding: 20px 10px;
+                background-color: $white;
+                position: fixed;
+                background-image: none;
+                box-shadow: none;
+                flex-direction: row;
+                justify-content: space-between;
+
+                &__wrapper {
+                    width: 100%;
+                    max-width: 980px;
+                    margin: 0 auto;
+                    flex-direction: row;
+                    justify-content: space-between;
+                }
 
                 &__logo {
-                    width: 36px;
+                    width: 136px;
                     height: 36px;
                     background-position: 0 center;
-                    left: 32px;
+                    left: 0;
+                    top: 0;
+                    position: relative;
+                    margin: 11px 0;
+                }
+
+                &__block {
+                    display: flex;
+                    margin: 0;
+
+                    &:not(:last-of-type) {
+                        margin: 0;
+                    }
                 }
 
                 &__title {
                     display: none;
                 }
 
+                &__items {
+                    display: flex;
+                    padding-top: 0;
+                }
+
                 &__item {
-                    font-size: 0;
-                    height: 50px;
-                    width: 100px;
-                    padding-left: 30px;
-                    background-position: 40px center;
+                    font-size: 13px;
+                    line-height: 35px;
+                    color: $dark;
+                    height: 60px;
+                    width: auto;
+                    padding: 10px 15px;
+                    background-image: none;
 
                     &:before {
-                        left: 20px;
-                        top: 24px;
+                        left: 5px;
+                        top: 26px;
+                        width: 4px;
+                        height: 4px;
                     }
                 }
             }
 
             @media screen and (max-width: 680px) {
-                width: 60px;
-                height: calc(100vh - 134px);
+                justify-content: center;
 
                 &__logo {
-                    left: 12px;
-                    top: 40px;
+                    width: 136px;
                 }
-
+                
                 &__items {
-                    padding-top: 0;
+                    display: none;
                 }
+            }
 
-                &__block {
-                    &:not(:last-of-type) {
-                        margin: 0;
-                    }
-                }
+            @media screen and (max-width: 480px) {
+                padding: 10px;
+                height: 60px;
 
-                &__item {
-                    width: 100%;
-                    padding-left: 0;
-                    background-position: center;
-
-                    &:before {
-                        left: 46px;
-                        top: 25px;
-                        height: 3px;
-                        width: 3px;
-                    }
+                &__logo {
+                    margin: 0;
                 }
             }
         // .Media
