@@ -313,6 +313,20 @@
 
                 &__items {
                     top: 60px;
+                    padding: 7px 0;
+                    
+                    &--active {
+                        height: 102px;
+                    }
+                }
+
+                &__item {
+                    font-size: 14px;
+                    padding: 12px 20px;
+
+                    &:before {
+                        top: 18px;
+                    }
                 }
 
                 &__menu {
