@@ -268,7 +268,7 @@
 
             &--is-playing {
                 background-image: url("../assets/img/player/pause_color.svg");
-                background-position: 5px center;
+                background-position: 7px center;
             }
         }
         
@@ -308,6 +308,12 @@
         // Media
             @media screen and (max-width: 680px) {
                 grid-template-columns: 30px 1fr 120px 40px;
+
+                &__play {
+                    &--is-playing {
+                        background-position: 5px center;
+                    }
+                }
 
                 &__title {
                     white-space: nowrap;

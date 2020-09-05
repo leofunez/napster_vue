@@ -67,7 +67,7 @@
 
                 current_time: 0,
                 current_bar: "0",
-                volume: 0.5,
+                volume: 5,
                 mute: false,
                 is_playing: false,
                 shuffle: false,

@@ -96,6 +96,14 @@ main {
                 &__item {
                     color: $white;
                 }
+
+                &__menu {
+                    background-color: $dark2;
+                    &:before,
+                    &:after {
+                        background-color: $white;
+                    }
+                }
             }
         // .MenuBar
 

@@ -183,6 +183,10 @@ main {
         }
 
         @media screen and (max-width: 480px) {
+            .napster-container {
+                padding-top: 70px;
+            }
+            
             .page {
                 margin-bottom: 20px;
 

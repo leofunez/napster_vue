@@ -4,8 +4,6 @@
             <h1 class="header__title">{{ current_page }}</h1>
 
             <div class="header__profile">
-                <!-- <div class="header__notifications"></div>
-                <div class="header__search"></div> -->
                 <div class="header__dark-mode" @click="darkMode"></div>
 
                 <p class="header__profile-name" v-text="user_name"></p>

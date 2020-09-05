@@ -3,7 +3,7 @@
         <div class="menu-bar__wrapper">
             <router-link to="/" class="menu-bar__logo"></router-link>
 
-            <div class="menu-bar__items">
+            <div class="menu-bar__items" :class="{'menu-bar__items--active': menuIsOpen}">
                 <div class="menu-bar__block">
                     <h2 class="menu-bar__title">Library</h2>
                     <router-link to="/" class="menu-bar__item menu-bar__item--dashboard" active-class="menu-bar__item--active" exact>Dashboard</router-link>
@@ -18,9 +18,27 @@
                     <router-link to="/my-tracks" class="menu-bar__item menu-bar__item--my-tracks" active-class="menu-bar__item--active">Tracks</router-link>
                 </div>    
             </div>
+
+            <button class="menu-bar__menu" :class="{'menu-bar__menu--active': menuIsOpen}" @click="openCloseMenu"></button>
         </div>
     </div>
 </template>
+
+<script>
+    export default {
+        data() {
+            return {
+                menuIsOpen: false
+            }
+        },
+
+        methods: {
+            openCloseMenu() {
+                this.menuIsOpen = !this.menuIsOpen
+            }
+        }
+    }
+</script>
 
 <style lang="scss">
     @import "../assets/scss/_colors.scss";
@@ -52,6 +70,46 @@
             display: block;
             margin: auto;
             position: absolute;
+        }
+
+        &__menu {
+            display: none;
+            cursor: pointer;
+            position: relative;
+            width: 50px;
+            padding: 0;
+            background-color: $white;
+            border: 0;
+            transition: all 0.4s ease-in-out;
+
+            &:before,
+            &:after {
+                content: "";
+                height: 2px;
+                width: 22px;
+                left: 15px;
+                background: $purple;
+                position: absolute;
+                top: 22px;
+                transition: all .2s ease;
+                transform: rotate(0);
+            }
+
+            &:after {
+                top: 30px;
+            }
+
+            &--active {
+                &:before {
+                    top: 28px;
+                    transform: rotate(45deg);
+                }
+
+                &:after {
+                    top: 28px;
+                    transform: rotate(-45deg);
+                }
+            }
         }
 
         &__block {
@@ -204,9 +262,48 @@
                 &__logo {
                     width: 136px;
                 }
-                
+
+                &__menu {
+                    display: block;
+                }
+
                 &__items {
-                    display: none;
+                    display: block;
+                    position: fixed;
+                    right: 0;
+                    top: 100px;
+                    height: 0;
+                    width: 100%;
+                    background: url("../assets/img/player/bg.svg") no-repeat center / cover $blue;
+                    box-shadow: 0 16px 24px #0510235e, inset 0 16px 24px #0510235e;
+                    transition: all 0.4s ease-in-out;
+                    visibility: hidden;
+                    overflow: hidden;
+
+                    &--active {
+                        height: 112px;
+                        visibility: visible;
+                    }
+                }
+
+                &__item {
+                    color: $white;
+                    font-size: 16px;
+                    line-height: 16px;
+                    height: auto;
+                    padding: 20px;
+                    text-align: right;
+
+                    &:before {
+                        left: auto;
+                        right: 6px;
+                        top: 27px;
+                    }
+                }
+
+                &__block {
+                    display: flex;
+                    justify-content: center;
                 }
             }
 
@@ -214,8 +311,33 @@
                 padding: 10px;
                 height: 60px;
 
+                &__items {
+                    top: 60px;
+                }
+
+                &__menu {
+                    &:before {
+                        top: 15px;
+                    }
+
+                    &:after {
+                        top: 23px;
+                    }
+
+                    &--active {
+                        &:before {
+                            top: 19px;
+                        }
+
+                        &:after {
+                            top: 19px;
+                        }
+                    }
+                }
+
                 &__logo {
                     margin: 0;
+                    top: 2px;
                 }
             }
         // .Media
