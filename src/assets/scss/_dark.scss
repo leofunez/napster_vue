@@ -50,13 +50,14 @@ main {
 
                     &-menu {
                         background-color: $dark3;
-                        color: $white;
                         box-shadow: none;
                         border-color: $dark4;
 
                         &-item {
+                            color: $white;
+                            
                             &:hover {
-                                color: $white;
+                                color: $blue;
                             }
                         }
                     }

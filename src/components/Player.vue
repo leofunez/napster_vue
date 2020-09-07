@@ -1,38 +1,38 @@
 <template>
-    <div class="main-player">
-        <div class="main-player__current-song">
-            <div class="main-player__photo" :style="{'background-image': 'url(' + track_photo + ')'}" v-if="track_photo"></div>
+    <div class="player">
+        <div class="player__current-song">
+            <div class="player__photo" :style="{'background-image': 'url(' + track_photo + ')'}" v-if="track_photo"></div>
             
-            <div class="main-player__text">
-                <div class="main-player__song-title" v-text="track_name"></div>
-                <div class="main-player__artist" v-text="track_artist"></div>
+            <div class="player__text">
+                <div class="player__song-title" v-text="track_name"></div>
+                <div class="player__artist" v-text="track_artist"></div>
             </div>
         </div>
 
-        <div class="main-player__controls">
-            <div class="main-player__progress-bar">
-                <span class="main-player__time" v-text="track_duration"></span>
+        <div class="player__controls">
+            <div class="player__progress-bar">
+                <span class="player__time" v-text="track_duration"></span>
                 
-                <div class="main-player__progress-bar-line">
-                    <div class="main-player__progress-bar-current" :style="{'width' : current_bar + '%'}"></div>
+                <div class="player__progress-bar-line">
+                    <div class="player__progress-bar-current" :style="{'width' : current_bar + '%'}"></div>
                 </div>
                 
-                <span class="main-player__time" v-text="track_current_time"></span>
+                <span class="player__time" v-text="track_current_time"></span>
             </div>
 
-            <div class="main-player__buttons">
-                <button class="main-player__shuffle" :class="{'main-player__shuffle--active': shuffle}" @click="shuffleTrackList"></button>
-                <button class="main-player__previous" @click="prevTrack"></button>
-                <button class="main-player__play" v-if="!is_playing" @click="playTrack"></button>
-                <button class="main-player__play main-player__play--is-playing" v-if="is_playing" @click="pauseTrack"></button>
-                <button class="main-player__next" @click="nextTrack"></button>
-                <button class="main-player__repeat" :class="{'main-player__repeat--active': repeat}" @click="repeatTrack"></button>
+            <div class="player__buttons">
+                <button class="player__shuffle" :class="{'player__shuffle--active': shuffle}" @click="shuffleTrackList"></button>
+                <button class="player__previous" @click="prevTrack"></button>
+                <button class="player__play" v-if="!is_playing" @click="playTrack"></button>
+                <button class="player__play player__play--is-playing" v-if="is_playing" @click="pauseTrack"></button>
+                <button class="player__next" @click="nextTrack"></button>
+                <button class="player__repeat" :class="{'player__repeat--active': repeat}" @click="repeatTrack"></button>
             </div>
         </div>
 
-        <div class="main-player__volume">
-            <div class="main-player__volume-button"
-                :class="{'main-player__volume--mute': mute, 'main-player__volume--low' : (volume > 0 && volume < 5 && !mute), 'main-player__volume--mid' : volume > 5}"
+        <div class="player__volume">
+            <div class="player__volume-button"
+                :class="{'player__volume--mute': mute, 'player__volume--low' : (volume > 0 && volume < 5 && !mute), 'player__volume--mid' : volume > 5}"
                 @click="muteVolume">
             </div>
             <input
@@ -40,7 +40,7 @@
                 id="volume_control"
                 min="1"
                 max="10"
-                class="main-player__volume-slider slider"
+                class="player__volume-slider slider"
                 :value="mute ? 0 : volume"
                 @change="changeVolume($event)"
             />
@@ -97,8 +97,8 @@
                     this.is_playing = true
 
                     this.track.ontimeupdate = () => {
-                        this.track_duration = this.getTrackTime(this.track.duration)
-                        this.track_current_time = this.getTrackTime(this.track.currentTime)
+                        this.track_duration = this.getTrackTime(this.track.duration) || "0:00"
+                        this.track_current_time = this.getTrackTime(this.track.currentTime) || "0:00"
                         this.current_bar = parseInt(this.track.currentTime * 33 / 10) + 1
                         
                         if(this.current_bar === 100){
@@ -264,14 +264,14 @@
     @import "../assets/scss/_colors.scss";
     @import "../assets/scss/_slider.scss";
 
-    .main-player {
+    .player {
         height: 180px;
         width: 100%;
         padding: 75px 60px 20px 60px;
         background: url("../assets/img/player/bg.svg") no-repeat center / cover $blue;
         display: flex;
         justify-content: space-between;
-        position: absolute;
+        position: fixed;
         bottom: 0;
         left: 0;
         color: $white;

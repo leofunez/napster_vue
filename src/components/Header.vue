@@ -166,14 +166,14 @@
                 transition: all .2s ease-in-out;
 
                 &-item {
-                    color: #A8B6D1;
+                    color: $dark;
                     padding: 8px 20px;
                     font-size: 14px;
                     font-weight: 400;
                     cursor: pointer;
 
                     &:hover {
-                        color: $dark;
+                        color: $blue;
                     }
                 }
             }
